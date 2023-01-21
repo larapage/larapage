@@ -14,9 +14,9 @@ class PostTest extends TestCase
 
     public function testIndex()
     {
-        $anakin = User::factory()->defaultLarapageUser()->create();
+        $lara_page_user = User::factory()->defaultLarapageUser()->create();
 
-        $post = Post::factory()->create(['author_id' => $anakin->id]);
+        $post = Post::factory()->create(['author_id' => $lara_page_user->id]);
         Post::factory()->count(2)->create();
         Comment::factory()->count(3)->create(['post_id' => $post->id]);
 
@@ -26,7 +26,7 @@ class PostTest extends TestCase
             ->assertSee($post->title)
             ->assertSee(humanize_date($post->posted_at))
             ->assertSee('3')
-            ->assertSee('Anakin');
+            ->assertSee('Lara Page');
     }
 
     public function testSearch()

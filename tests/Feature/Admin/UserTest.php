@@ -14,17 +14,17 @@ class UserTest extends TestCase
 
     public function testIndex()
     {
-        $anakin = User::factory()->defaultLarapageUser()->create();
+        $lara_page_user = User::factory()->defaultLarapageUser()->create();
         User::factory()->count(3)->create();
-        Post::factory()->count(3)->create(['author_id' => $anakin->id]);
+        Post::factory()->count(3)->create(['author_id' => $lara_page_user->id]);
 
         $this->actingAsAdmin()
             ->get('/admin/users')
             ->assertOk()
             ->assertSee('5 users')
             ->assertSee('3')
-            ->assertSee('anakin@skywalker.st')
-            ->assertSee('Anakin')
+            ->assertSee('larapage@larapage.org')
+            ->assertSee('Lara Page')
             ->assertSee('Name')
             ->assertSee('Email')
             ->assertSee('Registered at');
@@ -32,14 +32,14 @@ class UserTest extends TestCase
 
     public function testEdit()
     {
-        $anakin = User::factory()->defaultLarapageUser()->create();
+        $lara_page_user = User::factory()->defaultLarapageUser()->create();
 
         $this->actingAsAdmin()
-            ->get("/admin/users/{$anakin->id}/edit")
+            ->get("/admin/users/{$lara_page_user->id}/edit")
             ->assertOk()
-            ->assertSee('Anakin')
+            ->assertSee('Lara Page')
             ->assertSee('Show profile')
-            ->assertSee('anakin@skywalker.st')
+            ->assertSee('larapage@larapage.org')
             ->assertSee('Password confirmation')
             ->assertSee('Roles')
             ->assertSee('Update')
@@ -82,8 +82,8 @@ class UserTest extends TestCase
     private function validParams($overrides = [])
     {
         return array_merge([
-            'name' => 'Anakin',
-            'email' => 'anakin@skywalker.st',
+            'name' => 'Lara Page',
+            'email' => 'larapage@larapage.org',
         ], $overrides);
     }
 }

@@ -85,8 +85,8 @@ class UserTest extends TestCase
             ->assertJson([
                 'data' => [
                     'id' => $user->id,
-                    'name' => 'Anakin',
-                    'email' => 'anakin@skywalker.st',
+                    'name' => 'Lara Page',
+                    'email' => 'larapage@larapage.org',
                     'provider' => null,
                     'provider_id' => null,
                     'registered_at' => $user->registered_at->toIso8601String(),
@@ -125,8 +125,8 @@ class UserTest extends TestCase
     private function validParams($overrides = [])
     {
         return array_merge([
-            'name' => 'Anakin',
-            'email' => 'anakin@skywalker.st',
+            'name' => 'Lara Page',
+            'email' => 'larapage@larapage.org',
         ], $overrides);
     }
 }

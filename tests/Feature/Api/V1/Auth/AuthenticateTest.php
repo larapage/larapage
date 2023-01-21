@@ -19,7 +19,7 @@ class AuthenticateTest extends TestCase
         $user->roles()->save($role);
 
         $res = $this->json('POST', '/api/v1/authenticate', [
-            'email' => 'anakin@skywalker.st',
+            'email' => 'larapage@larapage.org',
             'password' => '4nak1n'
         ])
             ->assertOk()
@@ -52,7 +52,7 @@ class AuthenticateTest extends TestCase
         );
 
         $this->json('POST', '/api/v1/authenticate', [
-            'email' => 'anakin@skywalker.st',
+            'email' => 'larapage@larapage.org',
             'password' => 'Luk3'
         ])
             ->assertUnauthorized()

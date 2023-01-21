@@ -15,14 +15,14 @@ class CommentTest extends TestCase
 
     public function testIndex()
     {
-        $anakin = User::factory()->defaultLarapageUser()->create();
-        $comment = Comment::factory()->create(['author_id' => $anakin->id]);
+        $lara_page_user = User::factory()->defaultLarapageUser()->create();
+        $comment = Comment::factory()->create(['author_id' => $lara_page_user->id]);
 
         $this->actingAsAdmin()
             ->get('/admin/comments')
             ->assertOk()
             ->assertSee('1 comment')
-            ->assertSee('Anakin')
+            ->assertSee('Lara Page')
             ->assertSee('Content')
             ->assertSee('Author')
             ->assertSee('Posted at')
@@ -31,13 +31,13 @@ class CommentTest extends TestCase
 
     public function testEdit()
     {
-        $anakin = User::factory()->defaultLarapageUser()->create();
-        $comment = Comment::factory()->create(['author_id' => $anakin->id]);
+        $lara_page_user = User::factory()->defaultLarapageUser()->create();
+        $comment = Comment::factory()->create(['author_id' => $lara_page_user->id]);
 
         $this->actingAsAdmin()
             ->get("/admin/comments/{$comment->id}/edit")
             ->assertOk()
-            ->assertSee('Anakin')
+            ->assertSee('Lara Page')
             ->assertSee('Show post :')
             ->assertSee(route('posts.show', $comment->post))
             ->assertSee('Content')

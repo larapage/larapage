@@ -33,7 +33,7 @@ class UserFactory extends Factory
     }
 
     /**
-     * Indicate that the user is anakin.
+     * Indicate that the user is Lara Page.
      */
     public function defaultLarapageUser(): Factory
     {
