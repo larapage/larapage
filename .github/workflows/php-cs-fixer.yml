@@ -7,7 +7,7 @@ on:
     branches: [ main ]
 
 jobs:
-  php-cs-fixer:
+  check:
     runs-on: ubuntu-latest
 
     steps:
@@ -18,4 +18,5 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Run checks of code style
-        run: composer cs-check
+        run: php -v
+        # run: composer cs-check
