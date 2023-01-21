@@ -12,19 +12,19 @@ jobs:
 
     services:
       mariadb:
-        image: mariadb:latest
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: password
+          MYSQL_DATABASE: example_app
         ports:
           - 3306:3306
-        env:
-          MYSQL_DATABASE: example_app
-          MYSQL_ROOT_PASSWORD: password
-        options: --health-cmd="mysqladmin ping" --health-interval=5s --health-timeout=2s --health-retries=3
+        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Verify MariaDB connection
+      - name: Verify mysql connection
         env:
           PORT: ${{ job.services.mariadb.ports[3306] }}
         run: |
