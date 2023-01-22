@@ -12,13 +12,19 @@ jobs:
 
     services:
       mariadb:
-        image: mysql:8.0
+        image: mariadb:10.4
         env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
           MYSQL_ROOT_PASSWORD: password
           MYSQL_DATABASE: example_app
         ports:
-          - 3306:3306
+          - 32574:3306
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+      redis:
+        image: redis
+        ports:
+          - 6379/tcp
+        options: --health-cmd="redis-cli ping" --health-interval=10s --health-timeout=5s --health-retries=3
 
     steps:
       - name: Checkout Code
