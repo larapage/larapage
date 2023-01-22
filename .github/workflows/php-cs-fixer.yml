@@ -18,5 +18,4 @@ jobs:
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
 
       - name: Run checks of code style
-        run: php -v
-        # run: composer cs-check
+        run: composer cs-check
