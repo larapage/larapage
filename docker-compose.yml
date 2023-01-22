@@ -23,13 +23,13 @@ services:
         networks:
             - sail
         depends_on:
-            - mariadb
+            - mysql
             - redis
             - meilisearch
             - mailhog
             - selenium
-    mariadb:
-        image: 'mariadb:10'
+    mysql:
+        image: 'mysql/mysql-server:8.0'
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
@@ -40,12 +40,11 @@ services:
             MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
         volumes:
-            - 'sail-mariadb:/var/lib/mysql'
-            - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
+            - 'sail-mysql:/var/lib/mysql'
         networks:
             - sail
         healthcheck:
-            test: ["CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}"]
+            test: [ "CMD", "mysqladmin", "ping", "-p${DB_PASSWORD}" ]
             retries: 3
             timeout: 5s
     redis:
@@ -93,7 +92,7 @@ networks:
     sail:
         driver: bridge
 volumes:
-    sail-mariadb:
+    sail-mysql:
         driver: local
     sail-redis:
         driver: local
