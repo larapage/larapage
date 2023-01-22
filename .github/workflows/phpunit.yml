@@ -52,7 +52,7 @@ jobs:
         run: phpdbg -V
 
       - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.testing', '.env');"
+        run: php -r "file_exists('.env') || copy('.env.ci', '.env');"
 
       - name: Install Composer Dependencies
         run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
