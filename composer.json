@@ -31,7 +31,7 @@
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0",
         "filp/whoops": "2.14.5",
-        "laravel/homestead": "^13.2",
+        "laravel/homestead": "^14.1",
         "laravel/telescope": "4.9.0"
     },
     "autoload": {
