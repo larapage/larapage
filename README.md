@@ -45,3 +45,8 @@ Just make an [issue](https://github.com/larapage/larapage/issues) or PR in curre
 ## License
 
 This project is released under the [MIT](http://opensource.org/licenses/MIT) license.
+
+## Thanks to
+
+- [Guillaume Briday](https://github.com/guillaumebriday) for inspiration and [starting point](https://github.com/guillaumebriday/laravel-blog)
+- [Laravel](https://laravel.com) team for a wonderful framework
