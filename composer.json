@@ -25,14 +25,15 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "laravel/pint": "^1.0",
+        "filp/whoops": "2.14.5",
+        "friendsofphp/php-cs-fixer": "^3.13",
+        "gomzyakov/php-cs-fixer-config": "^1.9",
+        "laravel/homestead": "^14.1",
         "laravel/sail": "^1.18.1",
+        "laravel/telescope": "4.9.0",
         "mockery/mockery": "^1.4.4",
         "phpunit/phpunit": "^9.5.10",
-        "spatie/laravel-ignition": "^1.0",
-        "filp/whoops": "2.14.5",
-        "laravel/homestead": "^14.1",
-        "laravel/telescope": "4.9.0"
+        "spatie/laravel-ignition": "^1.0"
     },
     "autoload": {
         "psr-4": {
