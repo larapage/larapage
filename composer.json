@@ -18,7 +18,7 @@
         "laravelcollective/html": "6.3.0",
         "nunomaduro/collision": "^6.1",
         "predis/predis": "1.1.10",
-        "pusher/pusher-php-server": "7.0.2",
+        "pusher/pusher-php-server": "7.2.2",
         "spatie/laravel-backup": "8.1.2",
         "spatie/laravel-medialibrary": "10.3.2",
         "tonysm/turbo-laravel": "^1.4"
