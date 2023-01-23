@@ -9,11 +9,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUserIndex()
+    public function test_user_index()
     {
         User::factory()
             ->count(2)
@@ -23,7 +26,7 @@ class UserTest extends TestCase
         $this->json('GET', '/api/v1/users')
             ->assertOk()
             ->assertJsonStructure([
-                'data' => [[
+                'data'  => [[
                     'id',
                     'name',
                     'email',
@@ -34,8 +37,8 @@ class UserTest extends TestCase
                     'posts_count',
                     'roles' => [[
                         'id',
-                        'name'
-                    ]]
+                        'name',
+                    ]],
                 ]],
                 'links' => [
                     'first',
@@ -43,7 +46,7 @@ class UserTest extends TestCase
                     'prev',
                     'next',
                 ],
-                'meta' => [
+                'meta'  => [
                     'current_page',
                     'from',
                     'last_page',
@@ -51,11 +54,11 @@ class UserTest extends TestCase
                     'per_page',
                     'to',
                     'total',
-                ]
+                ],
             ]);
     }
 
-    public function testUserShow()
+    public function test_user_show()
     {
         $user = User::factory()->defaultLarapageUser()->create();
         $role = Role::factory()->editor()->create();
@@ -78,31 +81,31 @@ class UserTest extends TestCase
                     'posts_count',
                     'roles' => [[
                         'id',
-                        'name'
-                    ]]
-                ]
+                        'name',
+                    ]],
+                ],
             ])
             ->assertJson([
                 'data' => [
-                    'id' => $user->id,
-                    'name' => 'Lara Page',
-                    'email' => 'larapage@larapage.org',
-                    'provider' => null,
-                    'provider_id' => null,
-                    'registered_at' => $user->registered_at->toIso8601String(),
+                    'id'             => $user->id,
+                    'name'           => 'Lara Page',
+                    'email'          => 'larapage@larapage.org',
+                    'provider'       => null,
+                    'provider_id'    => null,
+                    'registered_at'  => $user->registered_at->toIso8601String(),
                     'comments_count' => 2,
-                    'posts_count' => 2,
-                    'roles' => [[
-                        'id' => $role->id,
-                        'name' => 'editor'
-                    ]]
+                    'posts_count'    => 2,
+                    'roles'          => [[
+                        'id'   => $role->id,
+                        'name' => 'editor',
+                    ]],
                 ],
             ]);
     }
 
-    public function testUpdate()
+    public function test_update()
     {
-        $user = $this->user();
+        $user   = $this->user();
         $params = $this->validParams();
 
         $this->actingAs($user, 'api')
@@ -117,15 +120,16 @@ class UserTest extends TestCase
     }
 
     /**
-     * Valid params for updating or creating a resource
+     * Valid params for updating or creating a resource.
      *
-     * @param  array  $overrides new params
+     * @param array $overrides new params
+     *
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])
     {
         return array_merge([
-            'name' => 'Lara Page',
+            'name'  => 'Lara Page',
             'email' => 'larapage@larapage.org',
         ], $overrides);
     }

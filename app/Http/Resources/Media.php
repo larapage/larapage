@@ -8,13 +8,15 @@ class Media extends JsonResource
 {
     /**
      * Transform the resource into an array.
+     *
+     * @param mixed $request
      */
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'url' => url($this->getUrl()),
+            'id'        => $this->id,
+            'name'      => $this->name,
+            'url'       => url($this->getUrl()),
             'thumb_url' => url($this->getUrl('thumb')),
         ];
     }

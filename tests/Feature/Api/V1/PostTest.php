@@ -9,25 +9,28 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testPostIndex()
+    public function test_post_index()
     {
         Post::factory()->count(2)->create();
 
         $this->json('GET', '/api/v1/posts')
             ->assertOk()
             ->assertJsonStructure([
-                'data' => [[
+                'data'  => [[
                     'id',
                     'title',
                     'slug',
                     'content',
                     'posted_at',
                     'author_id',
-                    'comments_count'
+                    'comments_count',
                 ]],
                 'links' => [
                     'first',
@@ -35,7 +38,7 @@ class PostTest extends TestCase
                     'prev',
                     'next',
                 ],
-                'meta' => [
+                'meta'  => [
                     'current_page',
                     'from',
                     'last_page',
@@ -43,11 +46,11 @@ class PostTest extends TestCase
                     'per_page',
                     'to',
                     'total',
-                ]
+                ],
             ]);
     }
 
-    public function testUsersPosts()
+    public function test_users_posts()
     {
         $user = User::factory()->create();
         Post::factory()->create(['author_id' => $user->id]);
@@ -55,14 +58,14 @@ class PostTest extends TestCase
         $this->json('GET', "/api/v1/users/{$user->id}/posts")
             ->assertOk()
             ->assertJsonStructure([
-                'data' => [[
+                'data'  => [[
                     'id',
                     'title',
                     'slug',
                     'content',
                     'posted_at',
                     'author_id',
-                    'comments_count'
+                    'comments_count',
                 ]],
                 'links' => [
                     'first',
@@ -70,7 +73,7 @@ class PostTest extends TestCase
                     'prev',
                     'next',
                 ],
-                'meta' => [
+                'meta'  => [
                     'current_page',
                     'from',
                     'last_page',
@@ -78,11 +81,11 @@ class PostTest extends TestCase
                     'per_page',
                     'to',
                     'total',
-                ]
+                ],
             ]);
     }
 
-    public function testUsersPostsFail()
+    public function test_users_posts_fail()
     {
         $user = User::factory()->create();
         Post::factory()->create(['author_id' => $user->id]);
@@ -90,15 +93,15 @@ class PostTest extends TestCase
         $this->json('GET', '/api/v1/users/314/posts')
             ->assertNotFound()
             ->assertJson([
-                'message' => sprintf('No query results for model [%s] 314', User::class)
+                'message' => sprintf('No query results for model [%s] 314', User::class),
             ]);
     }
 
-    public function testPostShow()
+    public function test_post_show()
     {
         $post = Post::factory()->create([
-            'title' => 'The Empire Strikes Back',
-            'content' => 'A Star Wars Story'
+            'title'   => 'The Empire Strikes Back',
+            'content' => 'A Star Wars Story',
         ]);
         Comment::factory()->count(2)->create(['post_id' => $post->id]);
 
@@ -112,34 +115,34 @@ class PostTest extends TestCase
                     'content',
                     'posted_at',
                     'author_id',
-                    'comments_count'
+                    'comments_count',
                 ],
             ])
             ->assertJson([
                 'data' => [
-                    'id' => $post->id,
-                    'title' => 'The Empire Strikes Back',
-                    'slug' => 'the-empire-strikes-back',
-                    'content' => 'A Star Wars Story',
-                    'posted_at' => $post->posted_at->toIso8601String(),
-                    'author_id' => $post->author_id,
-                    'comments_count' => 2
+                    'id'             => $post->id,
+                    'title'          => 'The Empire Strikes Back',
+                    'slug'           => 'the-empire-strikes-back',
+                    'content'        => 'A Star Wars Story',
+                    'posted_at'      => $post->posted_at->toIso8601String(),
+                    'author_id'      => $post->author_id,
+                    'comments_count' => 2,
                 ],
             ]);
     }
 
-    public function testPostShowFail()
+    public function test_post_show_fail()
     {
         $this->json('GET', '/api/v1/posts/31415')
             ->assertNotFound()
             ->assertJson([
-                'message' => sprintf('No query results for model [%s] 31415', Post::class)
+                'message' => sprintf('No query results for model [%s] 31415', Post::class),
             ]);
     }
 
-    public function testUpdate()
+    public function test_update()
     {
-        $post = Post::factory()->create();
+        $post   = Post::factory()->create();
         $params = $this->validParams();
 
         $this->actingAsAdmin('api')
@@ -153,7 +156,7 @@ class PostTest extends TestCase
         $this->assertEquals($params['content'], $post->content);
     }
 
-    public function testUpdateFail()
+    public function test_update_fail()
     {
         $post = Post::factory()->create();
 
@@ -161,11 +164,11 @@ class PostTest extends TestCase
             ->json('PATCH', "/api/v1/posts/{$post->id}", $this->validParams())
             ->assertForbidden()
             ->assertJson([
-                'message' => 'This action is unauthorized.'
+                'message' => 'This action is unauthorized.',
             ]);
     }
 
-    public function testStorePost()
+    public function test_store_post()
     {
         $params = $this->validParams();
 
@@ -177,17 +180,17 @@ class PostTest extends TestCase
         $this->assertDatabaseHas('posts', $params);
     }
 
-    public function testStorePostUnauthorized()
+    public function test_store_post_unauthorized()
     {
         $this->actingAsUser('api')
             ->json('POST', '/api/v1/posts/', $this->validParams())
             ->assertForbidden()
             ->assertJson([
-                'message' => 'This action is unauthorized.'
+                'message' => 'This action is unauthorized.',
             ]);
     }
 
-    public function testPostDelete()
+    public function test_post_delete()
     {
         $post = Post::factory()->create();
 
@@ -198,7 +201,7 @@ class PostTest extends TestCase
         $this->assertDatabaseMissing('posts', $post->toArray());
     }
 
-    public function testPostDeleteUnauthorized()
+    public function test_post_delete_unauthorized()
     {
         $post = Post::factory()->create();
 
@@ -206,23 +209,24 @@ class PostTest extends TestCase
             ->json('DELETE', "/api/v1/posts/{$post->id}")
             ->assertForbidden()
             ->assertJson([
-                'message' => 'This action is unauthorized.'
+                'message' => 'This action is unauthorized.',
             ]);
 
         $this->assertDatabaseHas('posts', $post->toArray());
     }
 
     /**
-     * Valid params for updating or creating a resource
+     * Valid params for updating or creating a resource.
      *
-     * @param  array  $overrides new params
+     * @param array $overrides new params
+     *
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])
     {
         return array_merge([
-            'title' => 'Star Trek ?',
-            'content' => 'Star Wars.',
+            'title'     => 'Star Trek ?',
+            'content'   => 'Star Wars.',
             'posted_at' => Carbon::yesterday()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
         ], $overrides);

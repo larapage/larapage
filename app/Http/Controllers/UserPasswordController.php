@@ -31,7 +31,7 @@ class UserPasswordController extends Controller
         $this->authorize('update', $user);
 
         $request->merge([
-            'password' => Hash::make($request->input('password'))
+            'password' => Hash::make($request->input('password')),
         ]);
 
         $user->update($request->only('password'));

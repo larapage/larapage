@@ -5,18 +5,21 @@ namespace Tests\Unit;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class CheckRoleMiddlewareTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testAdminAuthorized()
+    public function test_admin_authorized()
     {
         $this->actingAsAdmin()
             ->get('/admin/dashboard')
             ->assertOk();
     }
 
-    public function testAdminForbidden()
+    public function test_admin_forbidden()
     {
         $this->actingAsUser()
             ->get('/admin/dashboard')

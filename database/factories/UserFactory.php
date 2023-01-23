@@ -23,11 +23,11 @@ class UserFactory extends Factory
         static $password;
 
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'password' => $password ?: $password = 'password',
-            'api_token' => Str::random(60),
-            'remember_token' => Str::random(10),
+            'name'              => $this->faker->name(),
+            'email'             => $this->faker->unique()->safeEmail(),
+            'password'          => $password ?: $password = 'password',
+            'api_token'         => Str::random(60),
+            'remember_token'    => Str::random(10),
             'email_verified_at' => now(),
         ];
     }
@@ -39,8 +39,8 @@ class UserFactory extends Factory
     {
         return $this->state(function () {
             return [
-                'name' => 'Lara Page',
-                'email' => 'larapage@larapage.org'
+                'name'  => 'Lara Page',
+                'email' => 'larapage@larapage.org',
             ];
         });
     }

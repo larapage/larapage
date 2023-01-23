@@ -7,43 +7,46 @@ use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class CommentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testPostedAt()
+    public function test_posted_at()
     {
         $comment = Comment::factory()->create();
         $this->assertEqualsWithDelta($comment->posted_at->timestamp, now()->timestamp, 1);
     }
 
-    public function testGettingOnlyLastWeekComments()
+    public function test_getting_only_last_week_comments()
     {
         $faker = Factory::create();
 
         // Older Comments
         Comment::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($comment) use ($faker) {
-                    $comment->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                    $comment->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($comment) use ($faker) {
+                $comment->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+                $comment->save();
+            });
 
         // Newer Comments
         Comment::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($comment) use ($faker) {
-                    $comment->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
-                    $comment->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($comment) use ($faker) {
+                $comment->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
+                $comment->save();
+            });
 
         $isDuringLastWeek = true;
         foreach (Comment::lastWeek()->get() as $comment) {
             $isDuringLastWeek = $comment->posted_at->between(carbon('1 week ago'), now());
 
-            if (!$isDuringLastWeek) {
+            if (! $isDuringLastWeek) {
                 break;
             }
         }

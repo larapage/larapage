@@ -19,7 +19,7 @@ class CommentController extends Controller
         return response()->turboStream([
             response()->turboStream()->prepend('comments')->view('comments._comment', ['comment' => $comment]),
             response()->turboStream()->replace('comments_form')->view('comments._form', ['post' => $comment->post]),
-            response()->turboStream()->update('comments_count', trans_choice('comments.count', $comment->post->comments()->count()))
+            response()->turboStream()->update('comments_count', trans_choice('comments.count', $comment->post->comments()->count())),
         ]);
     }
 
@@ -34,7 +34,7 @@ class CommentController extends Controller
 
         return response()->turboStream([
             response()->turboStream()->remove($comment),
-            response()->turboStream()->update('comments_count', trans_choice('comments.count', $comment->post->comments()->count()))
+            response()->turboStream()->update('comments_count', trans_choice('comments.count', $comment->post->comments()->count())),
         ]);
     }
 }

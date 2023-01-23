@@ -31,7 +31,7 @@ class MediaController extends Controller
         $this->authorize('store', Media::class);
 
         $image = $request->file('image');
-        $name = $image->getClientOriginalName();
+        $name  = $image->getClientOriginalName();
 
         if ($request->filled('name')) {
             $name = $request->input('name');
@@ -39,9 +39,9 @@ class MediaController extends Controller
 
         return new MediaResource(
             MediaLibrary::first()
-                        ->addMedia($image)
-                        ->usingName($name)
-                        ->toMediaCollection() // TODO Fail
+                ->addMedia($image)
+                ->usingName($name)
+                ->toMediaCollection() // TODO Fail
         );
     }
 

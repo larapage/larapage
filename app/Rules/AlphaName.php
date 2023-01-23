@@ -10,10 +10,13 @@ class AlphaName implements Rule
      * Validates for one or more groups of one or more letters or numbers (or
      * letter component marks), each separated by a single separator (space
      * equivalent in any script, apostrophe, underscore or dash).
+     *
+     * @param mixed $attribute
+     * @param mixed $value
      */
     public function passes($attribute, $value)
     {
-        if (!is_string($value) && !is_numeric($value)) {
+        if (! is_string($value) && ! is_numeric($value)) {
             return false;
         }
 

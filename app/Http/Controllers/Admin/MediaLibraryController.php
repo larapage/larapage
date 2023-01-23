@@ -18,7 +18,7 @@ class MediaLibraryController extends Controller
     public function index(Request $request): View
     {
         return view('admin.media.index', [
-            'media' => MediaLibrary::first()->media()->get()
+            'media' => MediaLibrary::first()->media()->get(),
         ]);
     }
 
@@ -44,7 +44,7 @@ class MediaLibraryController extends Controller
     public function store(MediaLibraryRequest $request): RedirectResponse
     {
         $image = $request->file('image');
-        $name = $image->getClientOriginalName();
+        $name  = $image->getClientOriginalName();
 
         if ($request->filled('name')) {
             $name = $request->input('name');

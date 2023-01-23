@@ -8,19 +8,22 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class AuthenticateTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testAuthenticate()
+    public function test_authenticate()
     {
         $user = User::factory()->defaultLarapageUser()->create(['password' => Hash::make('4nak1n')]);
         $role = Role::factory()->editor()->create();
         $user->roles()->save($role);
 
         $res = $this->json('POST', '/api/v1/authenticate', [
-            'email' => 'larapage@larapage.org',
-            'password' => '4nak1n'
+            'email'    => 'larapage@larapage.org',
+            'password' => '4nak1n',
         ])
             ->assertOk()
             ->assertJsonStructure([
@@ -35,16 +38,16 @@ class AuthenticateTest extends TestCase
                     'posts_count',
                     'roles' => [[
                         'id',
-                        'name'
-                    ]]
+                        'name',
+                    ]],
                 ],
                 'meta' => [
-                    'access_token'
-                ]
+                    'access_token',
+                ],
             ]);
     }
 
-    public function testAuthenticateFail()
+    public function test_authenticate_fail()
     {
         $user = User::factory()->defaultLarapageUser()->create(['password' => Hash::make('4nak1n')]);
         $user->roles()->save(
@@ -52,12 +55,12 @@ class AuthenticateTest extends TestCase
         );
 
         $this->json('POST', '/api/v1/authenticate', [
-            'email' => 'larapage@larapage.org',
-            'password' => 'Luk3'
+            'email'    => 'larapage@larapage.org',
+            'password' => 'Luk3',
         ])
             ->assertUnauthorized()
             ->assertJson([
-                'message' => 'This action is unauthorized.'
+                'message' => 'This action is unauthorized.',
             ]);
     }
 }

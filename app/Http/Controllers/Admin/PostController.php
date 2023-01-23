@@ -19,7 +19,7 @@ class PostController extends Controller
     public function index(): View
     {
         return view('admin.posts.index', [
-            'posts' => Post::withCount('comments', 'likes')->with('author')->latest()->paginate(50)
+            'posts' => Post::withCount('comments', 'likes')->with('author')->latest()->paginate(50),
         ]);
     }
 
@@ -29,9 +29,9 @@ class PostController extends Controller
     public function edit(Post $post): View
     {
         return view('admin.posts.edit', [
-            'post' => $post,
+            'post'  => $post,
             'users' => User::authors()->pluck('name', 'id'),
-            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
+            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id'),
         ]);
     }
 
@@ -42,7 +42,7 @@ class PostController extends Controller
     {
         return view('admin.posts.create', [
             'users' => User::authors()->pluck('name', 'id'),
-            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id')
+            'media' => MediaLibrary::first()->media()->get()->pluck('name', 'id'),
         ]);
     }
 

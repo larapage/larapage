@@ -23,8 +23,8 @@ class UserPasswordsRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'current_password' => ['required', new CurrentPassword],
-            'password' => 'required|confirmed'
+            'current_password' => ['required', new CurrentPassword()],
+            'password'         => 'required|confirmed',
         ];
     }
 }

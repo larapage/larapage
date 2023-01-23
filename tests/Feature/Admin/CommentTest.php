@@ -9,14 +9,17 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class CommentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIndex()
+    public function test_index()
     {
         $lara_page_user = User::factory()->defaultLarapageUser()->create();
-        $comment = Comment::factory()->create(['author_id' => $lara_page_user->id]);
+        $comment        = Comment::factory()->create(['author_id' => $lara_page_user->id]);
 
         $this->actingAsAdmin()
             ->get('/admin/comments')
@@ -29,10 +32,10 @@ class CommentTest extends TestCase
             ->assertSee(Str::limit($comment->content, 50));
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $lara_page_user = User::factory()->defaultLarapageUser()->create();
-        $comment = Comment::factory()->create(['author_id' => $lara_page_user->id]);
+        $comment        = Comment::factory()->create(['author_id' => $lara_page_user->id]);
 
         $this->actingAsAdmin()
             ->get("/admin/comments/{$comment->id}/edit")
@@ -48,13 +51,13 @@ class CommentTest extends TestCase
             ->assertSee('Delete');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
-        $post = Post::factory()->create();
+        $post    = Post::factory()->create();
         $comment = Comment::factory()->create(['post_id' => $post->id]);
-        $params = $this->validParams([
-            'post_id' => $post->id,
-            'posted_at' => $post->posted_at->addDay()->format('Y-m-d\TH:i')
+        $params  = $this->validParams([
+            'post_id'   => $post->id,
+            'posted_at' => $post->posted_at->addDay()->format('Y-m-d\TH:i'),
         ]);
 
         $this->actingAsAdmin()
@@ -65,13 +68,13 @@ class CommentTest extends TestCase
         $this->assertEquals($params['content'], $comment->refresh()->content);
     }
 
-    public function testUpdateFail()
+    public function test_update_fail()
     {
-        $post = Post::factory()->create();
+        $post    = Post::factory()->create();
         $comment = Comment::factory()->create(['post_id' => $post->id]);
-        $params = $this->validParams([
-            'post_id' => $post->id,
-            'posted_at' => $post->posted_at->subDay()->format('Y-m-d\TH:i')
+        $params  = $this->validParams([
+            'post_id'   => $post->id,
+            'posted_at' => $post->posted_at->subDay()->format('Y-m-d\TH:i'),
         ]);
 
         $this->actingAsAdmin()
@@ -82,7 +85,7 @@ class CommentTest extends TestCase
         $this->assertDatabaseMissing('comments', $params);
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $comment = Comment::factory()->create();
 
@@ -95,9 +98,10 @@ class CommentTest extends TestCase
     }
 
     /**
-     * Valid params for updating or creating a resource
+     * Valid params for updating or creating a resource.
      *
-     * @param  array  $overrides new params
+     * @param array $overrides new params
+     *
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])
@@ -105,9 +109,9 @@ class CommentTest extends TestCase
         $post = Post::factory()->create();
 
         return array_merge([
-            'content' => 'Great article ! Thanks for sharing it with us.',
+            'content'   => 'Great article ! Thanks for sharing it with us.',
             'posted_at' => $post->posted_at->addDay()->format('Y-m-d\TH:i'),
-            'post_id' => $post->id,
+            'post_id'   => $post->id,
             'author_id' => User::factory()->create()->id,
         ], $overrides);
     }

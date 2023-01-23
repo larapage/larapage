@@ -8,11 +8,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIndex()
+    public function test_index()
     {
         $lara_page_user = User::factory()->defaultLarapageUser()->create();
         User::factory()->count(3)->create();
@@ -30,7 +33,7 @@ class UserTest extends TestCase
             ->assertSee('Registered at');
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $lara_page_user = User::factory()->defaultLarapageUser()->create();
 
@@ -46,9 +49,9 @@ class UserTest extends TestCase
             ->assertSee('Administrator');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
-        $user = User::factory()->create();
+        $user   = User::factory()->create();
         $params = $this->validParams();
 
         $this->actingAsAdmin()
@@ -59,12 +62,12 @@ class UserTest extends TestCase
         $this->assertEquals($params['email'], $user->refresh()->email);
     }
 
-    public function testUpdateRoles()
+    public function test_update_roles()
     {
         $user = User::factory()->create();
 
         $role_editor = Role::factory()->editor()->create();
-        $params = $this->validParams(['roles' => ['editor' => $role_editor->id]]);
+        $params      = $this->validParams(['roles' => ['editor' => $role_editor->id]]);
 
         $this->actingAsAdmin()
             ->patch("/admin/users/{$user->id}", $params)
@@ -74,15 +77,16 @@ class UserTest extends TestCase
     }
 
     /**
-     * Valid params for updating or creating a resource
+     * Valid params for updating or creating a resource.
      *
-     * @param  array  $overrides new params
-     * @return array  Valid params for updating or creating a resource
+     * @param array $overrides new params
+     *
+     * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])
     {
         return array_merge([
-            'name' => 'Lara Page',
+            'name'  => 'Lara Page',
             'email' => 'larapage@larapage.org',
         ], $overrides);
     }

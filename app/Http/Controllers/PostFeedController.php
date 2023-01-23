@@ -16,7 +16,7 @@ class PostFeedController extends Controller
         $posts = Cache::remember('feed-posts', now()->addHour(), fn () => Post::latest()->limit(20)->get());
 
         return response()->view('posts_feed.index', [
-            'posts' => $posts
+            'posts' => $posts,
         ], 200)->header('Content-Type', 'text/xml');
     }
 }

@@ -22,9 +22,9 @@ class Alert extends Component
      *
      * @return void
      */
-    public function __construct(string $type, string $dismissible = null)
+    public function __construct(string $type, ?string $dismissible = null)
     {
-        $this->type = $type;
+        $this->type        = $type;
         $this->dismissible = $dismissible;
     }
 

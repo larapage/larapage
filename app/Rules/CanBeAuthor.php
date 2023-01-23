@@ -9,6 +9,9 @@ class CanBeAuthor implements Rule
 {
     /**
      * Determine if the validation rule passes.
+     *
+     * @param mixed $attribute
+     * @param mixed $value
      */
     public function passes($attribute, $value)
     {

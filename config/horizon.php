@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'use' => 'default',
+    'use'          => 'default',
 
     /*
     |--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return [
     |
     */
 
-    'prefix' => env('HORIZON_PREFIX', 'horizon:'),
+    'prefix'       => env('HORIZON_PREFIX', 'horizon:'),
 
     /*
     |--------------------------------------------------------------------------
@@ -39,7 +39,7 @@ return [
     |
     */
 
-    'waits' => [
+    'waits'        => [
         'redis:default' => 60,
     ],
 
@@ -54,7 +54,7 @@ return [
     |
     */
 
-    'trim' => [
+    'trim'         => [
         'recent' => 60,
         'failed' => 10_080,
     ],
@@ -74,20 +74,20 @@ return [
         'production' => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
-                'balance' => 'simple',
-                'processes' => 10,
-                'tries' => 3,
+                'queue'      => ['default'],
+                'balance'    => 'simple',
+                'processes'  => 10,
+                'tries'      => 3,
             ],
         ],
 
-        'local' => [
+        'local'      => [
             'supervisor-1' => [
                 'connection' => 'redis',
-                'queue' => ['default'],
-                'balance' => 'simple',
-                'processes' => 3,
-                'tries' => 3,
+                'queue'      => ['default'],
+                'balance'    => 'simple',
+                'processes'  => 3,
+                'tries'      => 3,
             ],
         ],
     ],

@@ -39,7 +39,7 @@ class UserController extends Controller
 
         if ($request->filled('password')) {
             $request->merge([
-                'password' => Hash::make($request->input('password'))
+                'password' => Hash::make($request->input('password')),
             ]);
         }
 

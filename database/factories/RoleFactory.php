@@ -20,7 +20,7 @@ class RoleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word()
+            'name' => $this->faker->word(),
         ];
     }
 
@@ -31,7 +31,7 @@ class RoleFactory extends Factory
     {
         return $this->state(function () {
             return [
-                'name' => 'admin'
+                'name' => 'admin',
             ];
         });
     }
@@ -43,7 +43,7 @@ class RoleFactory extends Factory
     {
         return $this->state(function () {
             return [
-                'name' => 'editor'
+                'name' => 'editor',
             ];
         });
     }

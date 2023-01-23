@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Support\Str;
-use function Tonysm\TurboLaravel\dom_id;
 use Tonysm\TurboLaravel\Http\MultiplePendingTurboStreamResponse;
+
+use function Tonysm\TurboLaravel\dom_id;
 
 class PostLikeController extends Controller
 {
@@ -18,7 +19,7 @@ class PostLikeController extends Controller
 
         return response()->turboStream([
             response()->turboStream()->replace(dom_id($post, 'like'))->view('likes._like', ['post' => $post]),
-            response()->turboStream()->update(dom_id($post, 'likes_count'), Str::of($post->likes()->count()))
+            response()->turboStream()->update(dom_id($post, 'likes_count'), Str::of($post->likes()->count())),
         ]);
     }
 
@@ -31,7 +32,7 @@ class PostLikeController extends Controller
 
         return response()->turboStream([
             response()->turboStream()->replace(dom_id($post, 'like'))->view('likes._like', ['post' => $post]),
-            response()->turboStream()->update(dom_id($post, 'likes_count'), Str::of($post->likes()->count()))
+            response()->turboStream()->update(dom_id($post, 'likes_count'), Str::of($post->likes()->count())),
         ]);
     }
 }

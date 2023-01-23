@@ -18,7 +18,7 @@ class UserController extends Controller
     public function index(): View
     {
         return view('admin.users.index', [
-            'users' => User::latest()->paginate(50)
+            'users' => User::latest()->paginate(50),
         ]);
     }
 
@@ -28,8 +28,8 @@ class UserController extends Controller
     public function edit(User $user): View
     {
         return view('admin.users.edit', [
-            'user' => $user,
-            'roles' => Role::all()
+            'user'  => $user,
+            'roles' => Role::all(),
         ]);
     }
 
@@ -40,7 +40,7 @@ class UserController extends Controller
     {
         if ($request->filled('password')) {
             $request->merge([
-                'password' => Hash::make($request->input('password'))
+                'password' => Hash::make($request->input('password')),
             ]);
         }
 

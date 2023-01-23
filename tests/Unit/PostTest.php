@@ -7,11 +7,14 @@ use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testLimitLastMonthPosts()
+    public function test_limit_last_month_posts()
     {
         $limit = 5;
         Post::factory()->count(6)->create();
@@ -20,39 +23,39 @@ class PostTest extends TestCase
         $this->assertEquals($limit, $lastPosts->count());
     }
 
-    public function testSlug()
+    public function test_slug()
     {
         $post = Post::factory()->create(['title' => 'The Empire Strikes Back']);
         $this->assertEquals($post->slug, 'the-empire-strikes-back');
     }
 
-    public function testGettingOnlyLastMonthPosts()
+    public function test_getting_only_last_month_posts()
     {
         $faker = Factory::create();
 
         // Older Posts
         Post::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($post) use ($faker) {
-                    $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                    $post->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($post) use ($faker) {
+                $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+                $post->save();
+            });
 
         // Newer Posts
         Post::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($post) use ($faker) {
-                    $post->posted_at = $faker->dateTimeBetween(carbon('3 weeks ago'), carbon('1 weeks ago'));
-                    $post->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($post) use ($faker) {
+                $post->posted_at = $faker->dateTimeBetween(carbon('3 weeks ago'), carbon('1 weeks ago'));
+                $post->save();
+            });
 
         $isDuringLastMonth = true;
         foreach (Post::lastMonth()->get() as $post) {
             $isDuringLastMonth = $post->posted_at->between(carbon('1 month ago'), now());
 
-            if (!$isDuringLastMonth) {
+            if (! $isDuringLastMonth) {
                 break;
             }
         }
@@ -60,33 +63,33 @@ class PostTest extends TestCase
         $this->assertTrue($isDuringLastMonth);
     }
 
-    public function testGettingOnlyLastWeekPosts()
+    public function test_getting_only_last_week_posts()
     {
         $faker = Factory::create();
 
         // Older Posts
         Post::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($post) use ($faker) {
-                    $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                    $post->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($post) use ($faker) {
+                $post->posted_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+                $post->save();
+            });
 
         // Newer Posts
         Post::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($post) use ($faker) {
-                    $post->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
-                    $post->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($post) use ($faker) {
+                $post->posted_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
+                $post->save();
+            });
 
         $isDuringLastWeek = true;
         foreach (Post::lastWeek()->get() as $post) {
             $isDuringLastWeek = $post->posted_at->between(carbon('1 week ago'), now());
 
-            if (!$isDuringLastWeek) {
+            if (! $isDuringLastWeek) {
                 break;
             }
         }
@@ -94,7 +97,7 @@ class PostTest extends TestCase
         $this->assertTrue($isDuringLastWeek);
     }
 
-    public function testPostedAtScopeApplied()
+    public function test_posted_at_scope_applied()
     {
         Post::factory()->create()->update(['posted_at' => carbon('yesterday')]);
         Post::factory()->create()->update(['posted_at' => carbon('tomorrow')]);
@@ -103,7 +106,7 @@ class PostTest extends TestCase
         foreach (Post::all() as $post) {
             $isBeforeNow = $post->posted_at->lt(now());
 
-            if (!$isBeforeNow) {
+            if (! $isBeforeNow) {
                 break;
             }
         }
@@ -112,7 +115,7 @@ class PostTest extends TestCase
         $this->assertEquals(1, Post::count());
     }
 
-    public function testPostedAtScopeNotApplied()
+    public function test_posted_at_scope_not_applied()
     {
         $this->actingAsAdmin();
 
@@ -123,7 +126,7 @@ class PostTest extends TestCase
         foreach (Post::all() as $post) {
             $isBeforeNow = $post->posted_at->lt(now());
 
-            if (!$isBeforeNow) {
+            if (! $isBeforeNow) {
                 break;
             }
         }
@@ -132,7 +135,7 @@ class PostTest extends TestCase
         $this->assertEquals(2, Post::count());
     }
 
-    public function testSearch()
+    public function test_search()
     {
         Post::factory()->create(['title' => 'Hello Luke']);
         Post::factory()->create(['title' => 'Hello Leia']);

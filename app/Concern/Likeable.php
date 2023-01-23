@@ -8,14 +8,6 @@ use Illuminate\Database\Eloquent\Relations\morphMany;
 trait Likeable
 {
     /**
-     * The "booting" method of the trait.
-     */
-    protected static function bootLikeable(): void
-    {
-        static::deleting(fn ($resource) => $resource->likes->each->delete());
-    }
-
-    /**
      * Get all the resource's likes.
      */
     public function likes(): morphMany
@@ -34,7 +26,7 @@ trait Likeable
     }
 
     /**
-     * Check if the resource is liked by the current user
+     * Check if the resource is liked by the current user.
      */
     public function isLiked(): bool
     {
@@ -47,5 +39,13 @@ trait Likeable
     public function dislike()
     {
         return $this->likes()->where('author_id', auth()->id())->get()->each->delete();
+    }
+
+    /**
+     * The "booting" method of the trait.
+     */
+    protected static function bootLikeable(): void
+    {
+        static::deleting(fn ($resource) => $resource->likes->each->delete());
     }
 }

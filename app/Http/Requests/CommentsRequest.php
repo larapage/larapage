@@ -23,7 +23,7 @@ class CommentsRequest extends FormRequest
     {
         return [
             'content' => 'required',
-            'post_id' => 'required|exists:posts,id'
+            'post_id' => 'required|exists:posts,id',
         ];
     }
 }

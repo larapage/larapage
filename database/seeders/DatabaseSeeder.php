@@ -27,9 +27,9 @@ class DatabaseSeeder extends Seeder
         $user = User::firstOrCreate(
             ['email' => 'larapage@larapage.org'],
             [
-                'name' => 'Lara Page',
-                'password' => Hash::make('larapage'),
-                'email_verified_at' => now()
+                'name'              => 'Lara Page',
+                'password'          => Hash::make('larapage'),
+                'email_verified_at' => now(),
             ]
         );
 
@@ -38,16 +38,16 @@ class DatabaseSeeder extends Seeder
         // Posts
         $post = Post::firstOrCreate(
             [
-                'title' => 'Hello World',
-                'author_id' => $user->id
+                'title'     => 'Hello World',
+                'author_id' => $user->id,
             ],
             [
                 'posted_at' => now(),
-                'content' => "
+                'content'   => "
                     Welcome to Laravel-blog !<br><br>
                     Don't forget to read the README before starting.<br><br>
                     Feel free to add a star on Laravel-blog on Github !<br><br>
-                    You can open an issue or (better) a PR if something went wrong."
+                    You can open an issue or (better) a PR if something went wrong.",
             ]
         );
 
@@ -55,17 +55,17 @@ class DatabaseSeeder extends Seeder
         Comment::firstOrCreate(
             [
                 'author_id' => $user->id,
-                'post_id' => $post->id
+                'post_id'   => $post->id,
             ],
             [
                 'posted_at' => now(),
-                'content' => "Hey ! I'm a comment as example."
+                'content'   => "Hey ! I'm a comment as example.",
             ]
         );
 
         // API tokens
         User::where('api_token', null)->get()->each->update([
-            'api_token' => Token::generate()
+            'api_token' => Token::generate(),
         ]);
     }
 }

@@ -8,15 +8,18 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testProfil()
+    public function test_profil()
     {
-        $user = $this->user();
+        $user    = $this->user();
         $comment = Comment::factory()->create(['author_id' => $user->id]);
-        $posts = Post::factory()->count(3)->create(['author_id' => $user->id]);
+        $posts   = Post::factory()->count(3)->create(['author_id' => $user->id]);
 
         $this->actingAs($user)
             ->get("/users/{$user->id}")
@@ -34,7 +37,7 @@ class UserTest extends TestCase
             ->assertSee('Edit profile');
     }
 
-    public function testEditing()
+    public function test_editing()
     {
         $user = $this->user();
 
@@ -49,9 +52,9 @@ class UserTest extends TestCase
             ->assertSee('Save');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
-        $user = $this->user();
+        $user   = $this->user();
         $params = $this->validParams();
 
         $this->actingAs($user)
@@ -62,9 +65,9 @@ class UserTest extends TestCase
         $this->assertEquals($params['email'], $user->refresh()->email);
     }
 
-    public function testUpdatePassword()
+    public function test_update_password()
     {
-        $user = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
+        $user   = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
         $params = $this->validPasswordParams();
 
         $this->actingAs($user)
@@ -75,9 +78,9 @@ class UserTest extends TestCase
         $this->assertTrue(Hash::check($params['password'], $user->refresh()->password));
     }
 
-    public function testUpdatePasswordFail()
+    public function test_update_password_fail()
     {
-        $user = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
+        $user   = $this->user(['password' => Hash::make('4_n3w_h0p3')]);
         $params = $this->validPasswordParams(['current_password' => '7h3_l457_j3d1']);
 
         $this->actingAs($user)
@@ -88,31 +91,33 @@ class UserTest extends TestCase
     }
 
     /**
-     * Valid params for updating or creating a resource
+     * Valid params for updating or creating a resource.
      *
-     * @param  array  $overrides new params
-     * @return array  Valid params for updating or creating a resource
+     * @param array $overrides new params
+     *
+     * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])
     {
         return array_merge([
-            'name' => 'Padmé',
+            'name'  => 'Padmé',
             'email' => 'padme@amidala.na',
         ], $overrides);
     }
 
     /**
-     * Valid params for updating or creating a resource's password
+     * Valid params for updating or creating a resource's password.
      *
-     * @param  array  $overrides new params
-     * @return array  Valid params for updating or creating a resource
+     * @param array $overrides new params
+     *
+     * @return array Valid params for updating or creating a resource
      */
     private function validPasswordParams($overrides = [])
     {
         return array_merge([
-            'current_password' => '4_n3w_h0p3',
-            'password' => '7h3_3mp1r3_57r1k35_b4ck',
-            'password_confirmation' => '7h3_3mp1r3_57r1k35_b4ck'
+            'current_password'      => '4_n3w_h0p3',
+            'password'              => '7h3_3mp1r3_57r1k35_b4ck',
+            'password_confirmation' => '7h3_3mp1r3_57r1k35_b4ck',
         ], $overrides);
     }
 }

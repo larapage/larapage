@@ -23,7 +23,9 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Return an admin user
+     * Return an admin user.
+     *
+     * @param mixed $overrides
      *
      * @return User $admin
      */
@@ -38,7 +40,9 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Return an user
+     * Return an user.
+     *
+     * @param mixed $overrides
      *
      * @return User
      */
@@ -48,7 +52,9 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Acting as an admin
+     * Acting as an admin.
+     *
+     * @param mixed|null $api
      */
     protected function actingAsAdmin($api = null)
     {
@@ -58,7 +64,9 @@ abstract class TestCase extends BaseTestCase
     }
 
     /**
-     * Acting as an user
+     * Acting as an user.
+     *
+     * @param mixed|null $api
      */
     protected function actingAsUser($api = null)
     {

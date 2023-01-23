@@ -21,7 +21,7 @@ class Comment extends Model
         'author_id',
         'post_id',
         'content',
-        'posted_at'
+        'posted_at',
     ];
 
     /**
@@ -30,7 +30,7 @@ class Comment extends Model
      * @var array
      */
     protected $dates = [
-        'posted_at'
+        'posted_at',
     ];
 
     /**
@@ -39,7 +39,7 @@ class Comment extends Model
     public function scopeLastWeek(Builder $query): Builder
     {
         return $query->whereBetween('posted_at', [carbon('1 week ago'), now()])
-                     ->latest();
+            ->latest();
     }
 
     /**
@@ -51,7 +51,7 @@ class Comment extends Model
     }
 
     /**
-     * Return the comment's author
+     * Return the comment's author.
      */
     public function author(): BelongsTo
     {
@@ -59,7 +59,7 @@ class Comment extends Model
     }
 
     /**
-     * Return the comment's post
+     * Return the comment's post.
      */
     public function post(): BelongsTo
     {

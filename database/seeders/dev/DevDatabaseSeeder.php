@@ -21,7 +21,7 @@ class DevDatabaseSeeder extends Seeder
                 Comment::factory()
                     ->count(5)
                     ->create([
-                        'post_id' => $post->id
+                        'post_id' => $post->id,
                     ]);
             });
 

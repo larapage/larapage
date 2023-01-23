@@ -8,11 +8,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIndex()
+    public function test_index()
     {
         $lara_page_user = User::factory()->defaultLarapageUser()->create();
 
@@ -29,7 +32,7 @@ class PostTest extends TestCase
             ->assertSee('Lara Page');
     }
 
-    public function testSearch()
+    public function test_search()
     {
         Post::factory()->count(3)->create();
         $post = Post::factory()->create(['title' => 'Hello Obiwan']);
@@ -41,7 +44,7 @@ class PostTest extends TestCase
             ->assertSee(humanize_date($post->posted_at));
     }
 
-    public function testShow()
+    public function test_show()
     {
         $post = Post::factory()->create();
         Comment::factory()->count(2)->create(['post_id' => $post->id]);
@@ -57,7 +60,7 @@ class PostTest extends TestCase
             ->assertSee('Comment');
     }
 
-    public function testShowUnauthenticated()
+    public function test_show_unauthenticated()
     {
         $post = Post::factory()->create();
 

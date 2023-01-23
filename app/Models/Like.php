@@ -31,7 +31,7 @@ class Like extends Model
     }
 
     /**
-     * Return the like's author
+     * Return the like's author.
      */
     public function author(): BelongsTo
     {

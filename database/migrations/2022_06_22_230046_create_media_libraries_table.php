@@ -7,8 +7,7 @@ use Illuminate\Support\Facades\Schema;
 /**
  * TODO Use?
  */
-return new class extends Migration
-{
+return new class () extends Migration {
     /**
      * Run the migrations.
      *

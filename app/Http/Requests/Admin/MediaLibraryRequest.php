@@ -23,7 +23,7 @@ class MediaLibraryRequest extends FormRequest
     {
         return [
             'image' => 'required|image',
-            'name' => 'nullable|string|max:255'
+            'name'  => 'nullable|string|max:255',
         ];
     }
 }

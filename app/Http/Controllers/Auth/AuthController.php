@@ -12,6 +12,8 @@ class AuthController extends Controller
     /**
      * Redirect the user to the GitHub authentication page.
      *
+     * @param mixed $provider
+     *
      * @return Response
      */
     public function redirectToProvider($provider)
@@ -21,6 +23,8 @@ class AuthController extends Controller
 
     /**
      * Obtain the user information from provider.
+     *
+     * @param mixed $provider
      *
      * @return Response
      */
@@ -40,9 +44,11 @@ class AuthController extends Controller
     }
 
     /**
-     * Return user if exists; create and return if doesn't
+     * Return user if exists; create and return if doesn't.
      *
      * @param $user
+     * @param mixed $provider
+     *
      * @return User
      */
     private function findOrCreateUser($user, $provider)
@@ -54,10 +60,10 @@ class AuthController extends Controller
         }
 
         return User::create([
-            'name' => $user->name ?? $user->email,
-            'email' => $user->email,
-            'provider' => $provider,
-            'provider_id' => $user->id
+            'name'        => $user->name ?? $user->email,
+            'email'       => $user->email,
+            'provider'    => $provider,
+            'provider_id' => $user->id,
         ]);
     }
 }

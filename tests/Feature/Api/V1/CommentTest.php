@@ -8,23 +8,26 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class CommentTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testCommentIndex()
+    public function test_comment_index()
     {
         Comment::factory()->count(2)->create();
 
         $this->json('GET', '/api/v1/comments')
             ->assertOk()
             ->assertJsonStructure([
-                'data' => [[
+                'data'  => [[
                     'id',
                     'content',
                     'posted_at',
                     'author_id',
-                    'post_id'
+                    'post_id',
                 ]],
                 'links' => [
                     'first',
@@ -32,7 +35,7 @@ class CommentTest extends TestCase
                     'prev',
                     'next',
                 ],
-                'meta' => [
+                'meta'  => [
                     'current_page',
                     'from',
                     'last_page',
@@ -40,11 +43,11 @@ class CommentTest extends TestCase
                     'per_page',
                     'to',
                     'total',
-                ]
+                ],
             ]);
     }
 
-    public function testUsersComments()
+    public function test_users_comments()
     {
         $user = User::factory()->create();
         Comment::factory()->count(10)->create(['author_id' => $user->id]);
@@ -53,7 +56,7 @@ class CommentTest extends TestCase
         $this->json('GET', "/api/v1/users/{$user->id}/comments")
             ->assertOk()
             ->assertJsonStructure([
-                'data' => [[
+                'data'  => [[
                     'id',
                     'content',
                     'posted_at',
@@ -66,7 +69,7 @@ class CommentTest extends TestCase
                     'prev',
                     'next',
                 ],
-                'meta' => [
+                'meta'  => [
                     'current_page',
                     'from',
                     'last_page',
@@ -74,19 +77,19 @@ class CommentTest extends TestCase
                     'per_page',
                     'to',
                     'total',
-                ]
+                ],
             ])
             ->assertJsonFragment([
                 'current_page' => 1,
-                'from' => 1,
-                'last_page' => 1,
-                'per_page' => 20,
-                'to' => 10,
-                'total' => 10
+                'from'         => 1,
+                'last_page'    => 1,
+                'per_page'     => 20,
+                'to'           => 10,
+                'total'        => 10,
             ]);
     }
 
-    public function testPostsComments()
+    public function test_posts_comments()
     {
         $post = Post::factory()->create();
         Comment::factory()->count(10)->create(['post_id' => $post->id]);
@@ -95,7 +98,7 @@ class CommentTest extends TestCase
         $this->json('GET', "/api/v1/posts/{$post->id}/comments")
             ->assertOk()
             ->assertJsonStructure([
-                'data' => [[
+                'data'  => [[
                     'id',
                     'content',
                     'posted_at',
@@ -108,7 +111,7 @@ class CommentTest extends TestCase
                     'prev',
                     'next',
                 ],
-                'meta' => [
+                'meta'  => [
                     'current_page',
                     'from',
                     'last_page',
@@ -116,19 +119,19 @@ class CommentTest extends TestCase
                     'per_page',
                     'to',
                     'total',
-                ]
+                ],
             ])
             ->assertJsonFragment([
                 'current_page' => 1,
-                'from' => 1,
-                'last_page' => 1,
-                'per_page' => 20,
-                'to' => 10,
-                'total' => 10
+                'from'         => 1,
+                'last_page'    => 1,
+                'per_page'     => 20,
+                'to'           => 10,
+                'total'        => 10,
             ]);
     }
 
-    public function testStore()
+    public function test_store()
     {
         $post = Post::factory()->create();
 
@@ -137,20 +140,20 @@ class CommentTest extends TestCase
             ->assertCreated();
     }
 
-    public function testStoreFail()
+    public function test_store_fail()
     {
         $this->actingAsUser('api')
             ->json('POST', '/api/v1/posts/31415/comments', $this->validParams())
             ->assertNotFound()
             ->assertJson([
-                'message' => sprintf('No query results for model [%s] 31415', Post::class)
+                'message' => sprintf('No query results for model [%s] 31415', Post::class),
             ]);
     }
 
-    public function testCommentShow()
+    public function test_comment_show()
     {
         $comment = Comment::factory()->create([
-            'content' => 'The Empire Strikes Back'
+            'content' => 'The Empire Strikes Back',
         ]);
 
         $this->json('GET', "/api/v1/comments/{$comment->id}")
@@ -170,27 +173,27 @@ class CommentTest extends TestCase
             ])
             ->assertJson([
                 'data' => [
-                    'id' => $comment->id,
-                    'content' => 'The Empire Strikes Back',
-                    'posted_at' => $comment->posted_at->toIso8601String(),
-                    'author_id' => $comment->author_id,
-                    'post_id' => $comment->post_id,
+                    'id'          => $comment->id,
+                    'content'     => 'The Empire Strikes Back',
+                    'posted_at'   => $comment->posted_at->toIso8601String(),
+                    'author_id'   => $comment->author_id,
+                    'post_id'     => $comment->post_id,
                     'author_name' => $comment->author->name,
-                    'can_delete' => false
+                    'can_delete'  => false,
                 ],
             ]);
     }
 
-    public function testCommentShowFail()
+    public function test_comment_show_fail()
     {
         $this->json('GET', '/api/v1/comments/31415')
             ->assertNotFound()
             ->assertJson([
-                'message' => sprintf('No query results for model [%s] 31415', Comment::class)
+                'message' => sprintf('No query results for model [%s] 31415', Comment::class),
             ]);
     }
 
-    public function testCommentDelete()
+    public function test_comment_delete()
     {
         $comment = Comment::factory()->create();
 
@@ -199,17 +202,17 @@ class CommentTest extends TestCase
             ->assertNoContent();
     }
 
-    public function testCommentDeleteNotFound()
+    public function test_comment_delete_not_found()
     {
         $this->actingAsUser('api')
             ->json('DELETE', '/api/v1/comments/31415')
             ->assertNotFound()
             ->assertJson([
-                'message' => sprintf('No query results for model [%s] 31415', Comment::class)
+                'message' => sprintf('No query results for model [%s] 31415', Comment::class),
             ]);
     }
 
-    public function testCommentDeleteUnauthorized()
+    public function test_comment_delete_unauthorized()
     {
         $comment = Comment::factory()->create();
 
@@ -217,24 +220,25 @@ class CommentTest extends TestCase
             ->json('DELETE', "/api/v1/comments/{$comment->id}")
             ->assertForbidden()
             ->assertJson([
-                'message' => 'This action is unauthorized.'
+                'message' => 'This action is unauthorized.',
             ]);
     }
 
-    public function testCommentsDeleteUnauthenticated()
+    public function test_comments_delete_unauthenticated()
     {
         $comment = Comment::factory()->create();
         $this->json('DELETE', "/api/v1/comments/{$comment->id}")
             ->assertUnauthorized()
             ->assertJson([
-                'message' => 'Unauthenticated.'
+                'message' => 'Unauthenticated.',
             ]);
     }
 
     /**
-     * Valid params for updating or creating a resource
+     * Valid params for updating or creating a resource.
      *
-     * @param  array  $overrides new params
+     * @param array $overrides new params
+     *
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])

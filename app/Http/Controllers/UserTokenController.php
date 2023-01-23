@@ -30,7 +30,7 @@ class UserTokenController extends Controller
         $this->authorize('api_token', $user);
 
         $user->update([
-            'api_token' => Token::generate()
+            'api_token' => Token::generate(),
         ]);
 
         return redirect()->route('users.token')->withSuccess(__('tokens.updated'));

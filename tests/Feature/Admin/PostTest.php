@@ -8,11 +8,14 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PostTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testIndex()
+    public function test_index()
     {
         $lara_page_user = User::factory()->defaultLarapageUser()->create();
         Post::factory()->create(['author_id' => $lara_page_user->id]);
@@ -28,7 +31,7 @@ class PostTest extends TestCase
             ->assertSee('Title');
     }
 
-    public function testCreate()
+    public function test_create()
     {
         $this->actingAsAdmin()
             ->get('/admin/posts/create')
@@ -41,7 +44,7 @@ class PostTest extends TestCase
             ->assertSee('Save');
     }
 
-    public function testStore()
+    public function test_store()
     {
         $params = $this->validParams();
 
@@ -56,7 +59,7 @@ class PostTest extends TestCase
         $this->assertDatabaseHas('posts', $params);
     }
 
-    public function testStoreFail()
+    public function test_store_fail()
     {
         $params = $this->validParams(['content' => null]);
 
@@ -66,10 +69,10 @@ class PostTest extends TestCase
             ->assertSessionHas('errors');
     }
 
-    public function testEdit()
+    public function test_edit()
     {
         $lara_page_user = $this->admin(['name' => 'Lara Page', 'email' => 'larapage@larapage.org']);
-        $post = Post::factory()->create(['author_id' => $lara_page_user->id]);
+        $post           = Post::factory()->create(['author_id' => $lara_page_user->id]);
 
         $this->actingAs($lara_page_user)
             ->get("/admin/posts/{$post->slug}/edit")
@@ -83,9 +86,9 @@ class PostTest extends TestCase
             ->assertSee('Posted at');
     }
 
-    public function testUpdate()
+    public function test_update()
     {
-        $post = Post::factory()->create();
+        $post   = Post::factory()->create();
         $params = $this->validParams();
 
         $response = $this->actingAsAdmin()->patch("/admin/posts/{$post->slug}", $params);
@@ -98,7 +101,7 @@ class PostTest extends TestCase
         $this->assertEquals($params['content'], $post->content);
     }
 
-    public function testDelete()
+    public function test_delete()
     {
         $post = Post::factory()->create();
         Comment::factory()
@@ -119,16 +122,17 @@ class PostTest extends TestCase
     }
 
     /**
-     * Valid params for updating or creating a resource
+     * Valid params for updating or creating a resource.
      *
-     * @param  array  $overrides new params
+     * @param array $overrides new params
+     *
      * @return array Valid params for updating or creating a resource
      */
     private function validParams($overrides = [])
     {
         return array_merge([
-            'title' => 'hello world',
-            'content' => "I'm a content",
+            'title'     => 'hello world',
+            'content'   => "I'm a content",
             'posted_at' => now()->format('Y-m-d\TH:i'),
             'author_id' => $this->admin()->id,
         ], $overrides);

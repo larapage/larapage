@@ -8,11 +8,14 @@ use Faker\Factory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class UserTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testUserHasRole()
+    public function test_user_has_role()
     {
         $user = User::factory()->create();
         $role = Role::factory()->create();
@@ -21,18 +24,18 @@ class UserTest extends TestCase
         $this->assertTrue($user->hasRole($role->name));
     }
 
-    public function testUserIsAdmin()
+    public function test_user_is_admin()
     {
-        $admin = User::factory()->create();
+        $admin       = User::factory()->create();
         $role_editor = Role::factory()->editor()->create();
-        $role_admin = Role::factory()->admin()->create();
+        $role_admin  = Role::factory()->admin()->create();
 
         $admin->roles()->sync([$role_admin->id, $role_editor->id]);
 
         $this->assertTrue($admin->isAdmin());
     }
 
-    public function testUserIsNotAdmin()
+    public function test_user_is_not_admin()
     {
         $user = User::factory()->create();
         $user->roles()->attach(
@@ -42,33 +45,33 @@ class UserTest extends TestCase
         $this->assertFalse($user->isAdmin());
     }
 
-    public function testGettingOnlyLastWeekUsers()
+    public function test_getting_only_last_week_users()
     {
         $faker = Factory::create();
 
         // Older Users
         User::factory()
-                ->count(10)
-                ->create()
-                ->each(function ($user) use ($faker) {
-                    $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
-                    $user->save();
-                });
+            ->count(10)
+            ->create()
+            ->each(function ($user) use ($faker) {
+                $user->registered_at = $faker->dateTimeBetween(carbon('3 months ago'), carbon('2 months ago'));
+                $user->save();
+            });
 
         // Newer Users
         User::factory()
-                ->count(3)
-                ->create()
-                ->each(function ($user) use ($faker) {
-                    $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
-                    $user->save();
-                });
+            ->count(3)
+            ->create()
+            ->each(function ($user) use ($faker) {
+                $user->registered_at = $faker->dateTimeBetween(carbon('1 week ago'), now());
+                $user->save();
+            });
 
         $isDuringLastWeek = true;
         foreach (User::lastWeek()->get() as $user) {
             $isDuringLastWeek = $user->registered_at->between(carbon('1 week ago'), now());
 
-            if (!$isDuringLastWeek) {
+            if (! $isDuringLastWeek) {
                 break;
             }
         }
@@ -76,20 +79,20 @@ class UserTest extends TestCase
         $this->assertTrue($isDuringLastWeek);
     }
 
-    public function testFullnameAttribute()
+    public function test_fullname_attribute()
     {
         $user = User::factory()->create(['name' => 'LEIA']);
 
         $this->assertEquals('Leia', $user->fullname);
     }
 
-    public function testRegisteredAt()
+    public function test_registered_at()
     {
         $user = User::factory()->create();
         $this->assertEqualsWithDelta($user->registered_at->timestamp, now()->timestamp, 1);
     }
 
-    public function testAuthorsScope()
+    public function test_authors_scope()
     {
         $editor = Role::factory()->editor()->create();
         User::factory()->count(10)->create();
@@ -104,8 +107,9 @@ class UserTest extends TestCase
 
         $hasOnlyAuthors = true;
         foreach ($authors as $author) {
-            if (!$author->canBeAuthor()) {
+            if (! $author->canBeAuthor()) {
                 $hasOnlyAuthors = false;
+
                 break;
             }
         }

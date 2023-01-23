@@ -6,11 +6,14 @@ use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class PostLikeTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testPostLike()
+    public function test_post_like()
     {
         $post = Post::factory()->create();
 
@@ -21,7 +24,7 @@ class PostLikeTest extends TestCase
         $this->assertCount(1, $post->likes);
     }
 
-    public function testPostDislike()
+    public function test_post_dislike()
     {
         $user = $this->user();
         $post = Post::factory()->create();

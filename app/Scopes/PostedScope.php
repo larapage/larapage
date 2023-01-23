@@ -17,7 +17,7 @@ class PostedScope implements Scope
         $user = Auth::user() ?? Auth::guard('api')->user();
 
         // if not connected or if connected but not admin
-        if (!$user || !$user->isAdmin()) {
+        if (! $user || ! $user->isAdmin()) {
             $builder->where('posted_at', '<=', now());
         }
     }

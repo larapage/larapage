@@ -19,6 +19,8 @@ class SendNewsletterSubscriptionEmail implements ShouldQueue
 
     /**
      * Create a new job instance.
+     *
+     * @param mixed $email
      */
     public function __construct($email)
     {

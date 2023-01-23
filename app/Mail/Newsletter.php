@@ -16,6 +16,9 @@ class Newsletter extends Mailable
 
     /**
      * Create a new message instance.
+     *
+     * @param mixed $posts
+     * @param mixed $email
      */
     public function __construct($posts, $email)
     {
@@ -29,11 +32,11 @@ class Newsletter extends Mailable
     public function build(): Newsletter
     {
         return $this->from('hello@app.com', config('app.name', 'Laravel'))
-                    ->subject(__('newsletter.email.subject'))
-                    ->view('emails.newsletter')
-                    ->with([
-                        'posts' => $this->posts,
-                        'email' => $this->email
-                    ]);
+            ->subject(__('newsletter.email.subject'))
+            ->view('emails.newsletter')
+            ->with([
+                'posts' => $this->posts,
+                'email' => $this->email,
+            ]);
     }
 }

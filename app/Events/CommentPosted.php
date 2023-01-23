@@ -15,14 +15,14 @@ class CommentPosted implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     /**
-     * Comment details
+     * Comment details.
      *
      * @var CommentResource
      */
     public $comment;
 
     /**
-     * Post details
+     * Post details.
      *
      * @var Post
      */
@@ -34,7 +34,7 @@ class CommentPosted implements ShouldBroadcast
     public function __construct(CommentResource $comment, Post $post)
     {
         $this->comment = $comment;
-        $this->post = $post;
+        $this->post    = $post;
     }
 
     /**

@@ -17,7 +17,7 @@ class CommentController extends Controller
     public function index(): View
     {
         return view('admin.comments.index', [
-            'comments' => Comment::with('post', 'author')->latest()->paginate(50)
+            'comments' => Comment::with('post', 'author')->latest()->paginate(50),
         ]);
     }
 
@@ -28,7 +28,7 @@ class CommentController extends Controller
     {
         return view('admin.comments.edit', [
             'comment' => $comment,
-            'users' => User::pluck('name', 'id')
+            'users'   => User::pluck('name', 'id'),
         ]);
     }
 

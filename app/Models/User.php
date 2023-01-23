@@ -21,7 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'provider', 'provider_id', 'registered_at', 'api_token'
+        'name', 'email', 'password', 'provider', 'provider_id', 'registered_at', 'api_token',
     ];
 
     /**
@@ -30,7 +30,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $dates = [
-        'registered_at'
+        'registered_at',
     ];
 
     /**
@@ -56,7 +56,7 @@ class User extends Authenticatable implements MustVerifyEmail
     public function scopeLastWeek(Builder $query): Builder
     {
         return $query->whereBetween('registered_at', [carbon('1 week ago'), now()])
-                     ->latest();
+            ->latest();
     }
 
     /**
@@ -74,12 +74,12 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $query->whereHas('roles', function ($query) {
             $query->where('roles.name', Role::ROLE_ADMIN)
-                  ->orWhere('roles.name', Role::ROLE_EDITOR);
+                ->orWhere('roles.name', Role::ROLE_EDITOR);
         });
     }
 
     /**
-     * Check if the user can be an author
+     * Check if the user can be an author.
      */
     public function canBeAuthor(): bool
     {
@@ -87,7 +87,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Check if the user has a role
+     * Check if the user has a role.
      */
     public function hasRole(string $role): bool
     {
@@ -95,7 +95,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Check if the user has role admin
+     * Check if the user has role admin.
      */
     public function isAdmin(): bool
     {
@@ -103,7 +103,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Check if the user has role editor
+     * Check if the user has role editor.
      */
     public function isEditor(): bool
     {
@@ -111,7 +111,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Return the user's posts
+     * Return the user's posts.
      */
     public function posts(): HasMany
     {
@@ -119,7 +119,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Return the user's comments
+     * Return the user's comments.
      */
     public function comments(): HasMany
     {
@@ -127,7 +127,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Return the user's likes
+     * Return the user's likes.
      */
     public function likes(): HasMany
     {
@@ -135,7 +135,7 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     /**
-     * Return the user's roles
+     * Return the user's roles.
      */
     public function roles(): belongsToMany
     {

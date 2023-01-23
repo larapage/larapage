@@ -8,13 +8,16 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Mail;
 use Tests\TestCase;
 
+/**
+ * @coversNothing
+ */
 class NewsletterMailTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function testNewsletterMail()
+    public function test_newsletter_mail()
     {
-        $user = $this->user();
+        $user  = $this->user();
         $posts = Post::factory()->count(2)->create();
 
         Mail::fake();

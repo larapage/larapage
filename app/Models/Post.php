@@ -36,25 +36,8 @@ class Post extends Model
      * @var array
      */
     protected $dates = [
-        'posted_at'
+        'posted_at',
     ];
-
-    /**
-     * The "booting" method of the model.
-     */
-    protected static function boot(): void
-    {
-        parent::boot();
-        static::addGlobalScope(new PostedScope);
-    }
-
-    /**
-     * Prepare a date for array / JSON serialization.
-     */
-    protected function serializeDate(DateTimeInterface $date): string
-    {
-        return $date->format('Y-m-d H:i:s');
-    }
 
     /**
      * Get the route key for the model.
@@ -69,7 +52,7 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to search posts
+     * Scope a query to search posts.
      */
     public function scopeSearch(Builder $query, ?string $search)
     {
@@ -79,7 +62,7 @@ class Post extends Model
     }
 
     /**
-     * Scope a query to order posts by latest posted
+     * Scope a query to order posts by latest posted.
      */
     public function scopeLatest(Builder $query): Builder
     {
@@ -92,8 +75,8 @@ class Post extends Model
     public function scopeLastMonth(Builder $query, int $limit = 5): Builder
     {
         return $query->whereBetween('posted_at', [carbon('1 month ago'), now()])
-                     ->latest()
-                     ->limit($limit);
+            ->latest()
+            ->limit($limit);
     }
 
     /**
@@ -102,11 +85,11 @@ class Post extends Model
     public function scopeLastWeek(Builder $query): Builder
     {
         return $query->whereBetween('posted_at', [carbon('1 week ago'), now()])
-                     ->latest();
+            ->latest();
     }
 
     /**
-     * Return the post's author
+     * Return the post's author.
      */
     public function author(): BelongsTo
     {
@@ -114,7 +97,7 @@ class Post extends Model
     }
 
     /**
-     * Return the post's thumbnail
+     * Return the post's thumbnail.
      */
     public function thumbnail(): BelongsTo
     {
@@ -122,7 +105,7 @@ class Post extends Model
     }
 
     /**
-     * Return the post's comments
+     * Return the post's comments.
      */
     public function comments(): HasMany
     {
@@ -130,7 +113,7 @@ class Post extends Model
     }
 
     /**
-     * return the excerpt of the post content
+     * return the excerpt of the post content.
      */
     public function excerpt(int $length = 50): string
     {
@@ -138,10 +121,27 @@ class Post extends Model
     }
 
     /**
-     * return true if the post has a thumbnail
+     * return true if the post has a thumbnail.
      */
     public function hasThumbnail(): bool
     {
         return filled($this->thumbnail_id);
+    }
+
+    /**
+     * The "booting" method of the model.
+     */
+    protected static function boot(): void
+    {
+        parent::boot();
+        static::addGlobalScope(new PostedScope());
+    }
+
+    /**
+     * Prepare a date for array / JSON serialization.
+     */
+    protected function serializeDate(DateTimeInterface $date): string
+    {
+        return $date->format('Y-m-d H:i:s');
     }
 }

@@ -29,12 +29,12 @@ class NewsletterSubscriptionController extends Controller
     public function unsubscribe(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email|exists:newsletter_subscriptions,email'
+            'email' => 'required|email|exists:newsletter_subscriptions,email',
         ]);
 
         if ($validator->fails()) {
             $errors = $validator->errors()->all();
-            $route = 'login';
+            $route  = 'login';
 
             if (Auth::check()) {
                 $route = 'home';

@@ -8,19 +8,21 @@ class User extends JsonResource
 {
     /**
      * Transform the resource into an array.
+     *
+     * @param mixed $request
      */
     public function toArray($request): array
     {
         return [
-            'id' => $this->id,
-            'name' => $this->name,
-            'email' => $this->email,
-            'provider' => $this->provider,
-            'provider_id' => $this->provider_id,
-            'registered_at' => $this->registered_at->toIso8601String(),
+            'id'             => $this->id,
+            'name'           => $this->name,
+            'email'          => $this->email,
+            'provider'       => $this->provider,
+            'provider_id'    => $this->provider_id,
+            'registered_at'  => $this->registered_at->toIso8601String(),
             'comments_count' => $this->comments_count ?? $this->comments()->count(),
-            'posts_count' => $this->posts_count ?? $this->posts()->count(),
-            'roles' => Role::collection($this->roles),
+            'posts_count'    => $this->posts_count    ?? $this->posts()->count(),
+            'roles'          => Role::collection($this->roles),
         ];
     }
 }
