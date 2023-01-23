@@ -1973,10 +1973,10 @@ cli-table3@^0.6.0:
   optionalDependencies:
     "@colors/colors" "1.5.0"
 
-clipboard@2.0.10:
-  version "2.0.10"
-  resolved "https://registry.npmjs.org/clipboard/-/clipboard-2.0.10.tgz"
-  integrity sha512-cz3m2YVwFz95qSEbCDi2fzLN/epEN9zXBvfgAoGkvGOJZATMl9gtTDVOtBYkx2ODUJl2kvmud7n32sV2BpYR4g==
+clipboard@2.0.11:
+  version "2.0.11"
+  resolved "https://registry.yarnpkg.com/clipboard/-/clipboard-2.0.11.tgz#62180360b97dd668b6b3a84ec226975762a70be5"
+  integrity sha512-C+0bbOqkezLIsmWSvlsXS0Q0bmkugu7jcfMIACB+RDEntIzQIkdr148we28AfSloQLRdZlYL/QYyrq05j/3Faw==
   dependencies:
     good-listener "^1.2.2"
     select "^1.1.2"
@@ -3836,10 +3836,10 @@ laravel-echo@1.11.7:
   resolved "https://registry.npmjs.org/laravel-echo/-/laravel-echo-1.11.7.tgz"
   integrity sha512-LhEZp/RbdtdMlhptJyn452+aXfz+A1UW2bhJM7NROgXhnNgj+6P9BkG9JcPCBMernp5TGkOGI6A0NPbkAWYWGg==
 
-laravel-mix@6.0.43:
-  version "6.0.43"
-  resolved "https://registry.npmjs.org/laravel-mix/-/laravel-mix-6.0.43.tgz"
-  integrity sha512-SOO+C1aOpVSAUs30DYc6k/e0QJxfyD42aav4IKJtE5UZKw9ROWcVzkVoek2J475jNeNnl7GkoLAC27gejZsQ8g==
+laravel-mix@6.0.49:
+  version "6.0.49"
+  resolved "https://registry.yarnpkg.com/laravel-mix/-/laravel-mix-6.0.49.tgz#d718414858045df9d7467245e13fd4b45bc52c15"
+  integrity sha512-bBMFpFjp26XfijPvY5y9zGKud7VqlyOE0OWUcPo3vTBY5asw8LTjafAbee1dhfLz6PWNqDziz69CP78ELSpfKw==
   dependencies:
     "@babel/core" "^7.15.8"
     "@babel/plugin-proposal-object-rest-spread" "^7.15.6"
@@ -5131,18 +5131,18 @@ safe-buffer@5.2.1, safe-buffer@^5.2.0, safe-buffer@~5.2.0:
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass-loader@12.6.0:
-  version "12.6.0"
-  resolved "https://registry.npmjs.org/sass-loader/-/sass-loader-12.6.0.tgz"
-  integrity sha512-oLTaH0YCtX4cfnJZxKSLAyglED0naiYfNG1iXfU5w1LNZ+ukoA5DtyDIN5zmKVZwYNJP4KRc5Y3hkWga+7tYfA==
+sass-loader@13.2.0:
+  version "13.2.0"
+  resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-13.2.0.tgz#80195050f58c9aac63b792fa52acb6f5e0f6bdc3"
+  integrity sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==
   dependencies:
     klona "^2.0.4"
     neo-async "^2.6.2"
 
-sass@1.51.0:
-  version "1.51.0"
-  resolved "https://registry.npmjs.org/sass/-/sass-1.51.0.tgz"
-  integrity sha512-haGdpTgywJTvHC2b91GSq+clTKGbtkkZmVAb82jZQN/wTy6qs8DdFm2lhEQbEwrY0QDRgSQ3xDurqM977C3noA==
+sass@1.57.1:
+  version "1.57.1"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.57.1.tgz#dfafd46eb3ab94817145e8825208ecf7281119b5"
+  integrity sha512-O2+LwLS79op7GI0xZ8fqzF7X2m/m8WFfI02dHOdsK5R2ECeS5F62zrwg/relM1rjSLy7Vd/DiMNIvPrQGsA0jw==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
     immutable "^4.0.0"
@@ -5616,10 +5616,10 @@ toidentifier@1.0.1:
   resolved "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz"
   integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
 
-trumbowyg@2.25.1:
-  version "2.25.1"
-  resolved "https://registry.npmjs.org/trumbowyg/-/trumbowyg-2.25.1.tgz"
-  integrity sha512-bmmV1qC+fTLfyVpLE5iZjCzHG5DfAwM7p8K2fdq6L1kOi+IrVJk/qGFVEEmYyJ0Ofd1z3g2vavfABpmkVLzV6A==
+trumbowyg@2.26.0:
+  version "2.26.0"
+  resolved "https://registry.yarnpkg.com/trumbowyg/-/trumbowyg-2.26.0.tgz#228385e0e7737fa42eed4a9539a195b977d1c480"
+  integrity sha512-PbcoeAIoddI9lK3Gcty079wdplc2Tfp2yZRdSlkJpekiYiPgEqsvy70znkZH3vIofK7LFPpN2uz7qUaVg1CxoQ==
 
 tsconfig-paths@^3.14.1:
   version "3.14.1"
