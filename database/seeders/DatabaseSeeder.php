@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
         $user->roles()->sync([$role_admin->id]);
 
-        // Posts
+        // TODO Move posts to separate file
         $post = Post::firstOrCreate(
             [
                 'title'     => 'Hello World',
@@ -50,8 +50,22 @@ class DatabaseSeeder extends Seeder
                     You can open an issue or (better) a PR if something went wrong.",
             ]
         );
+        $post = Post::firstOrCreate(
+            [
+                'title'     => 'Hello World 2',
+                'author_id' => $user->id,
+            ],
+            [
+                'posted_at' => now(),
+                'content'   => "
+                    Welcome to Laravel-blog !<br><br>
+                    Don't forget to read the README before starting.<br><br>
+                    Feel free to add a star on Laravel-blog on Github !<br><br>
+                    You can open an issue or (better) a PR if something went wrong.",
+            ]
+        );
 
-        // Comments
+        // TODO Move comments to separate file
         Comment::firstOrCreate(
             [
                 'author_id' => $user->id,
