@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
             ]
         );
 
-        // Comments
+        // TODO Move comments to separate file
         Comment::firstOrCreate(
             [
                 'author_id' => $user->id,
