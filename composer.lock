@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5c47484645e68728e6472d97bc7965e0",
+    "content-hash": "403a844b1342545bbb2bb39f8894b9ac",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -999,6 +999,67 @@
             "time": "2022-02-20T15:07:15+00:00"
         },
         {
+            "name": "gomzyakov/show-me-the-api",
+            "version": "v0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gomzyakov/show-me-the-api.git",
+                "reference": "8bd63b074d1d27f5dc59c78cd08fb90f99101fd8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gomzyakov/show-me-the-api/zipball/8bd63b074d1d27f5dc59c78cd08fb90f99101fd8",
+                "reference": "8bd63b074d1d27f5dc59c78cd08fb90f99101fd8",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/contracts": "^9.0",
+                "kitloong/laravel-app-logger": "^1.0",
+                "php": "^8.0",
+                "spatie/laravel-package-tools": "^1.4.3"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^3.14",
+                "gomzyakov/php-cs-fixer-config": "^1.10",
+                "nunomaduro/collision": "^6.0",
+                "orchestra/testbench": "^7.0",
+                "phpstan/phpstan": "^1.9",
+                "phpunit/phpunit": "^9.3"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gomzyakov\\LaravelApiDocs\\LaravelRequestDocsServiceProvider"
+                    ],
+                    "aliases": {
+                        "LaravelRequestDocs": "Gomzyakov\\LaravelApiDocs\\LaravelRequestDocsFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gomzyakov\\LaravelApiDocs\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Automatically generates API documentation for Laravel projects",
+            "homepage": "https://github.com/gomzyakov/laravel-api-docs",
+            "keywords": [
+                "laravel",
+                "laravel-api-docs"
+            ],
+            "support": {
+                "issues": "https://github.com/gomzyakov/show-me-the-api/issues",
+                "source": "https://github.com/gomzyakov/show-me-the-api/tree/v0.1.0"
+            },
+            "time": "2023-01-31T13:10:41+00:00"
+        },
+        {
             "name": "graham-campbell/result-type",
             "version": "v1.1.0",
             "source": {
@@ -1474,6 +1535,76 @@
                 }
             ],
             "time": "2022-05-21T17:30:32+00:00"
+        },
+        {
+            "name": "kitloong/laravel-app-logger",
+            "version": "v1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kitloong/laravel-app-logger.git",
+                "reference": "9293696a1c0f06b49f475243c8a8f652f06eb085"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kitloong/laravel-app-logger/zipball/9293696a1c0f06b49f475243c8a8f652f06eb085",
+                "reference": "9293696a1c0f06b49f475243c8a8f652f06eb085",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "illuminate/support": "^5.8|^6.0|^7.0|^8.0|^9.0",
+                "php": ">=7.1.3",
+                "spatie/laravel-http-logger": "^1.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.17|^3.0",
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.8|^4.0|^5.0|^6.0|^7.0",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "KitLoong\\AppLogger\\AppLoggerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "KitLoong\\AppLogger\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Kit Loong",
+                    "email": "kitloong1008@gmail.com"
+                }
+            ],
+            "description": "Laravel log for your application",
+            "homepage": "https://github.com/kitloong/laravel-app-logger",
+            "keywords": [
+                "laravel",
+                "log",
+                "performance",
+                "query",
+                "request"
+            ],
+            "support": {
+                "issues": "https://github.com/kitloong/laravel-app-logger/issues",
+                "source": "https://github.com/kitloong/laravel-app-logger/tree/v1.1.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.buymeacoffee.com/kitloong",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-02-09T03:34:48+00:00"
         },
         {
             "name": "laravel/framework",
@@ -4733,6 +4864,72 @@
                 }
             ],
             "time": "2022-04-08T06:40:46+00:00"
+        },
+        {
+            "name": "spatie/laravel-http-logger",
+            "version": "1.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/spatie/laravel-http-logger.git",
+                "reference": "446f88e3f80cce93392db9a9c6278af234b9e01e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/spatie/laravel-http-logger/zipball/446f88e3f80cce93392db9a9c6278af234b9e01e",
+                "reference": "446f88e3f80cce93392db9a9c6278af234b9e01e",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "php": "^7.4|^8.0"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "pestphp/pest": "^1.22",
+                "phpunit/phpunit": "^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Spatie\\HttpLogger\\HttpLoggerServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Spatie\\HttpLogger\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Brent Roose",
+                    "email": "brent@spatie.be",
+                    "homepage": "https://spatie.be",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel package to log HTTP requests",
+            "homepage": "https://github.com/spatie/laravel-http-logger",
+            "keywords": [
+                "laravel-http-logger",
+                "spatie"
+            ],
+            "support": {
+                "issues": "https://github.com/spatie/laravel-http-logger/issues",
+                "source": "https://github.com/spatie/laravel-http-logger/tree/1.10.1"
+            },
+            "funding": [
+                {
+                    "url": "https://spatie.be/open-source/support-us",
+                    "type": "custom"
+                }
+            ],
+            "time": "2023-01-24T23:37:01+00:00"
         },
         {
             "name": "spatie/laravel-medialibrary",
