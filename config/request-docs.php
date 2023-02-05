@@ -3,31 +3,27 @@
 return [
     // change it to true will make lrd to throw exception if rules in request class need to be changed
     // keep it false
-    'debug' => false,
+    'debug'         => false,
     'document_name' => 'LRD',
 
     /*
     * Route where request docs will be served from
     * localhost:8080/request-docs
     */
-    'url' => 'request-docs',
+    'url'         => 'request-docs',
     'middlewares' => [
         //Example
         // \App\Http\Middleware\NotFoundWhenProduction::class,
     ],
 
-    /*
-    * Default headers shown on the request headers editor
-    */
+    // Default headers shown on the request headers editor
     'default_request_headers' => [
-        'Accept' => 'application/json',
-        'X-CSRF-TOKEN' => '',
+        'Accept'        => 'application/json',
+        'X-CSRF-TOKEN'  => '',
         'Authorization' => 'Bearer',
     ],
 
-    /*
-    * Show development relevant metadata on endpoints
-    */
+    // Show development relevant metadata on endpoints
     'show_development_metadata' => true,
 
     /**
@@ -65,15 +61,15 @@ return [
         // changeable
         'document_version' => '1.0.0',
         // license that you want to display
-        'license' => 'Apache 2.0',
+        'license'     => 'Apache 2.0',
         'license_url' => 'https://www.apache.org/licenses/LICENSE-2.0.html',
-        'server_url' => env('APP_URL', 'http://localhost'),
+        'server_url'  => env('APP_URL', 'http://127.0.0.1'),
 
         // for now putting default responses for all. This can be changed later based on specific needs
         'responses' => [
             '200' => [
                 'description' => 'Successful operation',
-                'content' => [
+                'content'     => [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
@@ -83,7 +79,7 @@ return [
             ],
             '400' => [
                 'description' => 'Bad Request',
-                'content' => [
+                'content'     => [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
@@ -93,7 +89,7 @@ return [
             ],
             '401' => [
                 'description' => 'Unauthorized',
-                'content' => [
+                'content'     => [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
@@ -103,7 +99,7 @@ return [
             ],
             '403' => [
                 'description' => 'Forbidden',
-                'content' => [
+                'content'     => [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
@@ -113,7 +109,7 @@ return [
             ],
             '404' => [
                 'description' => 'Not Found',
-                'content' => [
+                'content'     => [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
@@ -123,7 +119,7 @@ return [
             ],
             '422' => [
                 'description' => 'Unprocessable Entity',
-                'content' => [
+                'content'     => [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
@@ -133,7 +129,7 @@ return [
             ],
             '500' => [
                 'description' => 'Internal Server Error',
-                'content' => [
+                'content'     => [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
@@ -143,7 +139,7 @@ return [
             ],
             'default' => [
                 'description' => 'Unexpected error',
-                'content' => [
+                'content'     => [
                     'application/json' => [
                         'schema' => [
                             'type' => 'object',
