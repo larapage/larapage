@@ -21,7 +21,7 @@
         "pusher/pusher-php-server": "7.2.2",
         "spatie/laravel-backup": "8.1.2",
         "spatie/laravel-medialibrary": "10.7.10",
-        "tonysm/turbo-laravel": "^1.4"
+        "tonysm/turbo-laravel": "^1.10"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
