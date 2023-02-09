@@ -19,7 +19,7 @@
         "nunomaduro/collision": "^6.1",
         "predis/predis": "2.1.1",
         "pusher/pusher-php-server": "7.2.2",
-        "spatie/laravel-backup": "8.1.2",
+        "spatie/laravel-backup": "8.1.7",
         "spatie/laravel-medialibrary": "10.7.10",
         "tonysm/turbo-laravel": "^1.10"
     },
