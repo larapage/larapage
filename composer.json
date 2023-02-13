@@ -27,7 +27,7 @@
         "fakerphp/faker": "^1.9.1",
         "filp/whoops": "2.14.6",
         "friendsofphp/php-cs-fixer": "^3.14",
-        "gomzyakov/php-cs-fixer-config": "^1.9",
+        "gomzyakov/php-cs-fixer-config": "^1.12",
         "laravel/homestead": "^14.2",
         "laravel/sail": "^1.19.0",
         "laravel/telescope": "4.13.1",
