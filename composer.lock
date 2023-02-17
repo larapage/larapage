@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "8c3c53f025320871be5d29b9351f52b0",
+    "content-hash": "c0edb146224fb8bf060dcf4773e978a5",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -7392,16 +7392,16 @@
         },
         {
             "name": "tonysm/turbo-laravel",
-            "version": "1.10.0",
+            "version": "1.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/hotwired-laravel/turbo-laravel.git",
-                "reference": "37671cfa5e9253e8648b945722c5477f5d88c492"
+                "reference": "f17545613031a0ce77214a8ca7921e0021740548"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hotwired-laravel/turbo-laravel/zipball/37671cfa5e9253e8648b945722c5477f5d88c492",
-                "reference": "37671cfa5e9253e8648b945722c5477f5d88c492",
+                "url": "https://api.github.com/repos/hotwired-laravel/turbo-laravel/zipball/f17545613031a0ce77214a8ca7921e0021740548",
+                "reference": "f17545613031a0ce77214a8ca7921e0021740548",
                 "shasum": ""
             },
             "require": {
@@ -7455,10 +7455,10 @@
             ],
             "support": {
                 "issues": "https://github.com/hotwired-laravel/turbo-laravel/issues",
-                "source": "https://github.com/hotwired-laravel/turbo-laravel/tree/1.10.0"
+                "source": "https://github.com/hotwired-laravel/turbo-laravel/tree/1.11.0"
             },
             "abandoned": "hotwired/turbo-laravel",
-            "time": "2023-02-01T11:45:14+00:00"
+            "time": "2023-02-04T00:59:59+00:00"
         },
         {
             "name": "vlucas/phpdotenv",
