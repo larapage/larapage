@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "86fccb15025d00c348cfdb3f0972eead",
+    "content-hash": "b57f0ef1afa1740c26ae4bc4d679bfdf",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -8202,16 +8202,16 @@
         },
         {
             "name": "gomzyakov/php-cs-fixer-config",
-            "version": "v1.12.0",
+            "version": "v1.13.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/gomzyakov/php-cs-fixer-config.git",
-                "reference": "8e821e4f2283bfe4edf32bde8ecd7d5066910762"
+                "reference": "499273d70adb1ce0843df4d121832ea71a01d5d5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/gomzyakov/php-cs-fixer-config/zipball/8e821e4f2283bfe4edf32bde8ecd7d5066910762",
-                "reference": "8e821e4f2283bfe4edf32bde8ecd7d5066910762",
+                "url": "https://api.github.com/repos/gomzyakov/php-cs-fixer-config/zipball/499273d70adb1ce0843df4d121832ea71a01d5d5",
+                "reference": "499273d70adb1ce0843df4d121832ea71a01d5d5",
                 "shasum": ""
             },
             "require": {
@@ -8249,9 +8249,9 @@
             ],
             "support": {
                 "issues": "https://github.com/gomzyakov/php-cs-fixer-config/issues",
-                "source": "https://github.com/gomzyakov/php-cs-fixer-config/tree/v1.12.0"
+                "source": "https://github.com/gomzyakov/php-cs-fixer-config/tree/v1.13.0"
             },
-            "time": "2023-02-07T06:50:25+00:00"
+            "time": "2023-02-14T06:10:50+00:00"
         },
         {
             "name": "hamcrest/hamcrest-php",
