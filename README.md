@@ -34,7 +34,7 @@ sail up -d
 sail artisan migrate:fresh --seed
 ```
 
-And open http://127.0.0.1 in your favorite browser. Happy using Secretic!
+And open http://127.0.0.1 in your favorite browser. Happy using LaraPage!
 
 ## Contributing
 
