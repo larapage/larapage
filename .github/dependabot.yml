@@ -9,37 +9,20 @@ updates:
   # Maintain dependencies for Composer
   - package-ecosystem: "composer"
     directory: "/"
+    versioning-strategy: increase
     schedule:
       interval: "weekly"
-    # Force commit message preferences
-    # Docs https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#commit-message
-    commit-message:
-      prefix: "build"
-      include: "scope"
-    # Add assignees
-    assignees:
-      - "gomzyakov"
-    # Specify labels for npm pull requests
     labels:
       - "dependencies"
-    # Increase the version requirements for Composer
-    # only when required
-    versioning-strategy: increase
 
   # Maintain dependencies for GitHub Actions
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
       interval: "weekly"
-    commit-message:
-      prefix: "build"
-      include: "scope"
 
   # Maintain dependencies for npm
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
       interval: "weekly"
-    commit-message:
-      prefix: "build"
-      include: "scope"
