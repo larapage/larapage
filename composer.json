@@ -30,7 +30,7 @@
         "gomzyakov/php-cs-fixer-config": "^1.13",
         "laravel/homestead": "^14.2",
         "laravel/sail": "^1.20.2",
-        "laravel/telescope": "4.13.1",
+        "laravel/telescope": "4.13.2",
         "mockery/mockery": "^1.4.4",
         "phpunit/phpunit": "^9.6.3",
         "spatie/laravel-ignition": "^1.0"
