@@ -1,7 +1,8 @@
 # Docs: <https://docs.codecov.io/docs/commit-status>
 
 codecov:
-  require_ci_to_pass: yes
+  require_ci_to_pass: true
+  branch: main
 
 coverage:
   # coverage lower than 50 is red, higher than 90 green
