@@ -14,7 +14,7 @@
         "laravel/tinker": "^2.7",
         "laravel/horizon": "5.14.2",
         "laravel/socialite": "5.6.1",
-        "laravel/ui": "4.2.0",
+        "laravel/ui": "4.2.1",
         "laravelcollective/html": "6.4.0",
         "nunomaduro/collision": "^7.0",
         "predis/predis": "2.1.1",
