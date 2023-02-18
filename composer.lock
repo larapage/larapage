@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "20785efc702b4fe7fbd50342b3a33218",
+    "content-hash": "c475d4e5b89b1637036b5df878c37197",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -2418,16 +2418,16 @@
         },
         {
             "name": "league/flysystem",
-            "version": "3.12.2",
+            "version": "3.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/flysystem.git",
-                "reference": "f6377c709d2275ed6feaf63e44be7a7162b0e77f"
+                "reference": "81e87e74dd5213795c7846d65089712d2dda90ce"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/f6377c709d2275ed6feaf63e44be7a7162b0e77f",
-                "reference": "f6377c709d2275ed6feaf63e44be7a7162b0e77f",
+                "url": "https://api.github.com/repos/thephpleague/flysystem/zipball/81e87e74dd5213795c7846d65089712d2dda90ce",
+                "reference": "81e87e74dd5213795c7846d65089712d2dda90ce",
                 "shasum": ""
             },
             "require": {
@@ -2489,7 +2489,7 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/flysystem/issues",
-                "source": "https://github.com/thephpleague/flysystem/tree/3.12.2"
+                "source": "https://github.com/thephpleague/flysystem/tree/3.12.3"
             },
             "funding": [
                 {
@@ -2505,20 +2505,20 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-19T12:02:19+00:00"
+            "time": "2023-02-18T15:32:41+00:00"
         },
         {
             "name": "league/glide",
-            "version": "2.2.2",
+            "version": "2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/thephpleague/glide.git",
-                "reference": "bff5b0fe2fd26b2fde2d6958715fde313887d79d"
+                "reference": "446b1fc9f15101db52e8ddb7bec8cb16e814b244"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/glide/zipball/bff5b0fe2fd26b2fde2d6958715fde313887d79d",
-                "reference": "bff5b0fe2fd26b2fde2d6958715fde313887d79d",
+                "url": "https://api.github.com/repos/thephpleague/glide/zipball/446b1fc9f15101db52e8ddb7bec8cb16e814b244",
+                "reference": "446b1fc9f15101db52e8ddb7bec8cb16e814b244",
                 "shasum": ""
             },
             "require": {
@@ -2568,9 +2568,9 @@
             ],
             "support": {
                 "issues": "https://github.com/thephpleague/glide/issues",
-                "source": "https://github.com/thephpleague/glide/tree/2.2.2"
+                "source": "https://github.com/thephpleague/glide/tree/2.2.3"
             },
-            "time": "2022-02-21T07:40:55+00:00"
+            "time": "2023-02-14T06:15:26+00:00"
         },
         {
             "name": "league/mime-type-detection",
@@ -4841,16 +4841,16 @@
         },
         {
             "name": "spatie/laravel-medialibrary",
-            "version": "10.7.10",
+            "version": "10.7.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-medialibrary.git",
-                "reference": "5c9fb62f8d4019e7fc2741d9812849661d78ed15"
+                "reference": "a6d562d2226c2b339db8299a3a02bacd031edabf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/5c9fb62f8d4019e7fc2741d9812849661d78ed15",
-                "reference": "5c9fb62f8d4019e7fc2741d9812849661d78ed15",
+                "url": "https://api.github.com/repos/spatie/laravel-medialibrary/zipball/a6d562d2226c2b339db8299a3a02bacd031edabf",
+                "reference": "a6d562d2226c2b339db8299a3a02bacd031edabf",
                 "shasum": ""
             },
             "require": {
@@ -4933,7 +4933,7 @@
             ],
             "support": {
                 "issues": "https://github.com/spatie/laravel-medialibrary/issues",
-                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.7.10"
+                "source": "https://github.com/spatie/laravel-medialibrary/tree/10.7.11"
             },
             "funding": [
                 {
@@ -4945,7 +4945,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-01-19T07:58:23+00:00"
+            "time": "2023-02-17T08:44:20+00:00"
         },
         {
             "name": "spatie/laravel-package-tools",
