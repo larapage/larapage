@@ -1,7 +1,0 @@
-.github/ export-ignore
-tests/ export-ignore
-.editorconfig export-ignore
-.gitignore export-ignore
-.php-cs-fixer.dist.php export-ignore
-docker-compose.yaml export-ignore
-phpunit.xml export-ignore
