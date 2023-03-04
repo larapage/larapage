@@ -5669,10 +5669,10 @@ toidentifier@1.0.1:
   resolved "https://registry.npmjs.org/toidentifier/-/toidentifier-1.0.1.tgz"
   integrity sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==
 
-trumbowyg@2.27.1:
-  version "2.27.1"
-  resolved "https://registry.npmjs.org/trumbowyg/-/trumbowyg-2.27.1.tgz"
-  integrity sha512-mUUFNDaavSdcLLodSDRe/b13VwEgT2XQAMJOA+o3IfXq9CUTlBbJf1owstJJZ3bxKEzI3ceoVoVHTIKCSUukUg==
+trumbowyg@2.27.3:
+  version "2.27.3"
+  resolved "https://registry.npmjs.org/trumbowyg/-/trumbowyg-2.27.3.tgz"
+  integrity sha512-mEFhPSrF3dobjnGSSW7BfnmX5Pnv9T4KIoATOHxFOHtb1exE0L2hNPxCr6Bh4iFRJQD4UErleyKCapKf2yImKw==
 
 tsconfig-paths@^3.14.1:
   version "3.14.1"
