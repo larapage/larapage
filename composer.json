@@ -25,7 +25,7 @@
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
-        "filp/whoops": "2.14.6",
+        "filp/whoops": "2.15.0",
         "friendsofphp/php-cs-fixer": "^3.14",
         "gomzyakov/php-cs-fixer-config": "^1.13",
         "laravel/homestead": "^14.2",
