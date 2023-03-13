@@ -20,7 +20,7 @@
         "predis/predis": "2.1.2",
         "pusher/pusher-php-server": "7.2.2",
         "spatie/laravel-backup": "8.1.7",
-        "spatie/laravel-medialibrary": "10.7.11",
+        "spatie/laravel-medialibrary": "10.7.13",
         "tonysm/turbo-laravel": "^1.10"
     },
     "require-dev": {
